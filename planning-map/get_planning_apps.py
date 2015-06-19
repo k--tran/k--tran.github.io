@@ -14,7 +14,7 @@ def planning_app_ids(suburb):
         url = "https://www.melbourne.vic.gov.au/BuildingandPlanning/Planning/Pages/Planningregisteronlinesearchresults.aspx?sub={0}".format(encoded_sub)
         req = requests.get(url, headers = {"User-Agent":"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"})
         soup = BeautifulSoup(req.content, 'lxml', from_encoding='Latin-1')
-        p_nums = soup.find(attrs={"class": pageSummary"}).get_text(strip=True)
+        p_nums = soup.find(attrs={"class": "pageSummary"}).get_text(strip=True)
         total_p = re.search(urof\s(\d+)', p_nums).group(1) + 1)
         page_range = xrange(1, total_p/10 + 1)
         for page_num in page_range:
