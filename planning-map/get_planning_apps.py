@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 def planning_app_ids(suburb):
     
     list_of_apps = []
-    encoded_sub = urllib.urlencode(suburb)
+    encoded_sub = urllib.quote(suburb)
 
     try:
         url = "https://www.melbourne.vic.gov.au/BuildingandPlanning/Planning/Pages/Planningregisteronlinesearchresults.aspx?sub={0}".format(encoded_sub)
