@@ -20,7 +20,33 @@
         var mapOptions = {
           zoom: 4,
           center: myLatlng
+          mapTypeControlOptions: {
+            mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'custom_style']
+          },
+          mapTypeId: 'custom_style'
         };
+        var featureOpts = [
+          {
+            stylers: [
+              { hue: '#890000' },
+              { visibility: 'simplified' },
+              { gamma: 0.5 },
+              { weight: 0.5 }
+            ]
+          },
+          {
+            elementType: 'labels',
+            stylers: [
+              { visibility: 'off' }
+            ]
+          },
+          {
+            featureType: 'water',
+            stylers: [
+              { color: '#890000' }
+            ]
+          }
+        ];
       
         var map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
@@ -50,6 +76,14 @@
             content: contentString,
             maxWidth: 200
         });
+        
+        var styledMapOptions = {
+          name: 'Custom Style'
+        };
+      
+        var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
+      
+        map.mapTypes.set('custom_style', customMapType);
       
         var marker = new google.maps.Marker({
             position: myLatlng,
