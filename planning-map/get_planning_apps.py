@@ -3,6 +3,7 @@
 
 import re
 import requests
+import urllib
 from bs4 import BeautifulSoup
 
 def planning_app_ids(suburb):
@@ -24,18 +25,22 @@ def planning_app_ids(suburb):
             tbl_rows = soup.find(attrs={"class": "permitsList"}).find_all('tr')
             for tbl_row in tbl_rows:
                 #skip header row
-                if re.search(u'Property Address', tbl_row) is not None:
+                if tbl_row is None:
                     continue
-                elif tbl_row['class'] == 'heading1':
-                    cols = tbl_row.find_all('th')
-                    address = cols[1].get_text()
-                elif tbl_row['class'] == 'heading2':
-                    continue
-                elif tbl_row['class'] == 'detail':
-                    cols = tbl_row.find_all('td')
-                    link = tbl_row.find_next('a').get('href')
-                    description = col[1].get_text().replace('\n', ' ').strip()
-                    list_of_apps.append(address, description, link)
+                else:
+                    if re.search(u'Property Address', tbl_row.get_text()) is not None:
+                        continue
+                    elif tbl_row['class'] == 'heading1':
+                        cols = tbl_row.find_all('th')
+                        address = cols[1].get_text()
+                    elif tbl_row['class'] == 'heading2':
+                        continue
+                    elif tbl_row['class'] == 'detail':
+                        cols = tbl_row.find_all('td')
+                        link = tbl_row.find_next('a').get('href')
+                        description = col[1].get_text().replace('\n', ' ').strip()
+                        list_of_apps.append(address, description, link)
+                        print (address, description, link)
 
     except requests.ConnectionError:
         print "Connection error"
