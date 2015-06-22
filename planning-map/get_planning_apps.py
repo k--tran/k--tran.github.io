@@ -5,6 +5,7 @@ import re
 import requests
 import urllib
 import time
+import csv
 from bs4 import BeautifulSoup
 
 def planning_app_ids(suburb):
@@ -47,3 +48,13 @@ def planning_app_ids(suburb):
     print u'Done'
     
     return list_of_apps
+    
+def create_csv(data):
+    
+    with open('planning_apps.csv','w') as out:
+        csv_out=csv.writer(out)
+        csv_out.writerow(['address','description', 'link'])
+        for row in data:
+            csv_out.writerow(row)
+            
+http://stackoverflow.com/questions/28921096/loading-csv-with-filereader-to-make-js-objects-for-map-markers-maps-api
