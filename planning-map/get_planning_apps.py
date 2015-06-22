@@ -7,6 +7,7 @@ import urllib
 import time
 import csv
 from bs4 import BeautifulSoup
+import csv, codecs, cStringIO
 
 def planning_app_ids(suburb):
     
@@ -22,7 +23,7 @@ def planning_app_ids(suburb):
         page_range = xrange(1, total_p/10 + 1)
         for page_num in page_range:
             print page_num
-            time.sleep(1)
+            
             url = "https://www.melbourne.vic.gov.au/BuildingandPlanning/Planning/Pages/Planningregisteronlinesearchresults.aspx?sub={0}&page={1}".format(encoded_sub, page_num)
             req = requests.get(url, headers = {"User-Agent":"MMozilla/5.0 (compatible; MSIE 10.0; Macintosh; Intel Mac OS X 10_7_3; Trident/6.0)"})
             soup = BeautifulSoup(req.content, 'lxml', from_encoding='Latin-1')
@@ -32,15 +33,16 @@ def planning_app_ids(suburb):
                 #skip header row
                 if tbl_row['class'] == ['heading1']:
                     cols = tbl_row.find_all('th')
-                    address = cols[1].get_text()
+                    addresses = list(cols[1].stripped_strings)
                 elif tbl_row['class'] == ['heading2']:
                     pass
                 elif tbl_row['class'] == ['detail']:
                     cols = tbl_row.find_all('td')
                     link = tbl_row.find_next('a').get('href')
                     description = cols[1].get_text().replace('\n', ' ').strip()
-                    list_of_apps.append((address, description, link))
-                    print address
+                    for address in addresses:
+                        list_of_apps.append((address, description, link))
+                        print (address, description, link)
 
     except requests.ConnectionError:
         print "Connection error"
@@ -49,10 +51,40 @@ def planning_app_ids(suburb):
     
     return list_of_apps
     
+class UnicodeWriter:
+    """
+    A CSV writer which will write rows to CSV file "f",
+    which is encoded in the given encoding.
+    """
+
+    def __init__(self, f, dialect=csv.excel, encoding="utf-8", **kwds):
+        # Redirect output to a queue
+        self.queue = cStringIO.StringIO()
+        self.writer = csv.writer(self.queue, dialect=dialect, **kwds)
+        self.stream = f
+        self.encoder = codecs.getincrementalencoder(encoding)()
+
+    def writerow(self, row):
+        self.writer.writerow([s.encode("utf-8") for s in row])
+        # Fetch UTF-8 output from the queue ...
+        data = self.queue.getvalue()
+        data = data.decode("utf-8")
+        # ... and reencode it into the target encoding
+        data = self.encoder.encode(data)
+        # write to the target stream
+        self.stream.write(data)
+        # empty queue
+        self.queue.truncate(0)
+
+    def writerows(self, rows):
+        for row in rows:
+            self.writerow(row)
+    
 def create_csv(data):
     
     with open('planning_apps.csv','w') as out:
-        csv_out=csv.writer(out)
+        csv_out = UnicodeWriter(out)
+        #csv_out=csv_writer.writer(out)
         csv_out.writerow(['address','description', 'link'])
         for row in data:
             csv_out.writerow(row)
