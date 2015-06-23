@@ -34,11 +34,10 @@
             result.push(obj);
         }
           return result;
-      }
-      
       
       $.get('planning-map/apps.csv', function(data) {
          alert(data);
+         var csv_data = jQuery.csv.toObjects(data.responseText);
       }, 'text');
       
       //var data = jQuery.csv.toObjects(csvFile.responseText);
