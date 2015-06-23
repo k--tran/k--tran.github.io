@@ -17,13 +17,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="planning-map/jquery-csv.js"></script>
     <script type="text/javascript">
-      var csv_data;
-      var map;
-      
+
       function initialize() {
         
         $.get('planning-map/apps.csv', function(data) {
-          csv_data = jQuery.csv.toObjects(data);
+          var csv_data = jQuery.csv.toObjects(data);
           var geocoder = new google.maps.Geocoder();
           var latitude;
           var longitude;
