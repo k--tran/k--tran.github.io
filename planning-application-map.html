@@ -17,13 +17,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="planning-map/jquery-csv.js"></script>
     <script type="text/javascript">
-    
+
+      var geocoder = new google.maps.Geocoder();
       var csv_data;
       
       $.get('planning-map/apps.csv', function(data) {
          csv_data = jQuery.csv.toObjects(data);
          csv_data.forEach(function(d) {
-           d.latlng = 1;
+            geocoder.geocode( { 'address': address}, function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                var latitude = results[0].geometry.location.lat();
+                var longitude = results[0].geometry.location.lng();
+              } 
+            }); 
+           d.latlng = latitude;
          });
       }, 'text');
       
