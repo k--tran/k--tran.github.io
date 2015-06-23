@@ -54,26 +54,7 @@
           //    ]
           //  }
           //];
-              
-          var contentString = '<div id="content">'+
-              '<div id="siteNotice">'+
-              '</div>'+
-              '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
-              '<div id="bodyContent">'+
-              '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-              'sandstone rock formation in the southern part of the '+
-              'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-              'Heritage Site.</p>'+
-              '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-              'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-              '(last visited June 22, 2009).</p>'+
-              '</div>'+
-              '</div>';
-        
-          var infowindow = new google.maps.InfoWindow({
-              content: contentString,
-              maxWidth: 200
-          });
+  
           
           //var styledMapOptions = {
           //  name: 'Custom Style'
@@ -95,6 +76,24 @@
                   title: d.address,
                 });
                 var appMarker = new google.maps.Marker(markerOptions);
+                var contentString = '<div id="content">'+
+                  '<div id="siteNotice">'+
+                  '</div>'+
+                  '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+                  '<div id="bodyContent">'+
+                  '<p><b>' +
+                  d.address +
+                  '</b></p>' +
+                  '<p>' + d.description + '</p>' +
+                  '<p>Link<a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+                  '</p>'+
+                  '</div>'+
+                  '</div>';
+        
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString,
+                    maxWidth: 200
+                });
                 google.maps.event.addListener(appMarker, 'click', function() {
                   infowindow.open(map,appMarker);
                 });
