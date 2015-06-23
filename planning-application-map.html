@@ -37,7 +37,8 @@
       
       var csvFile = jQuery.get('planning-map/apps.csv', function(data) {alert(data); });
       
-      var data = jQuery.csv.toObjects(csvFile.responseText);
+      //var data = jQuery.csv.toObjects(csvFile.responseText);
+      var data = csvParse(csvFile);
       
       function initialize() {
         var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
