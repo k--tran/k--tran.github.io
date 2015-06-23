@@ -22,20 +22,7 @@
         
         
         $.get('planning-map/apps.csv', function(data) {
-          csv_data = jQuery.csv.toObjects(data);
-          var geocoder = new google.maps.Geocoder();
-          var g_latitude;
-          var g_longitude;
-          csv_data.forEach(function(d) {
-            geocoder.geocode( { 'address': d.address}, function(results, status) {
-              if (status == google.maps.GeocoderStatus.OK) {
-                var g_latitude = results[0].geometry.location.lat();
-                var g_longitude = results[0].geometry.location.lng();
-                d.latitude = g_latitude;
-                d.longitude = g_longitude;
-              } 
-            }); 
-           });
+
           var centerLatlng = new google.maps.LatLng(-37.795218, 144.94777399999998);
           var mapOptions = {
             zoom: 15,
@@ -94,20 +81,22 @@
         
           //var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
           
+          csv_data = jQuery.csv.toObjects(data);
+          
           var geocoder = new google.maps.Geocoder();
           var g_latitude;
           var g_longitude;
+          
           csv_data.forEach(function(d) {
             geocoder.geocode( { 'address': d.address}, function(results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
                 var g_latitude = results[0].geometry.location.lat();
                 var g_longitude = results[0].geometry.location.lng();
-                var latitude = g_latitude;
-                var longitude = g_longitude;
-                console.log(latitude);
+                console.log(g_latitude);
+                console.log(g_longitude);
               } 
-            });
-          });
+            }); 
+           });
           
           //for (var i = 0, len = csv_data.length; i < len; i++) {
           //  var latitude;
