@@ -36,10 +36,9 @@
           return result;
       }
       
-      var csvFile;
       
       $.get('planning-map/apps.csv', function(data) {
-         var data = csvParse(csvFile.responseText);
+         var csv_data = csvParse(data.responseText);
       }, 'text');
       
       //var data = jQuery.csv.toObjects(csvFile.responseText);
