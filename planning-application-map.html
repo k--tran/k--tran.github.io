@@ -98,7 +98,6 @@
           var g_latitude;
           var g_longitude;
           csv_data.forEach(function(d) {
-            console.log(d);
             geocoder.geocode( { 'address': d.address}, function(results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
                 var g_latitude = results[0].geometry.location.lat();
