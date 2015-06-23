@@ -62,6 +62,7 @@
           //var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
           
           csv_data = jQuery.csv.toObjects(data);
+          console.log(csv_data)
           
           csv_data.forEach(function(d) {
             var geocoder = new google.maps.Geocoder();
