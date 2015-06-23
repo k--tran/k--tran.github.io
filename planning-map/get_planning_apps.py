@@ -41,7 +41,11 @@ def planning_app_ids(suburb):
                     link = tbl_row.find_next('a').get('href')
                     description = cols[1].get_text().replace('\n', ' ').strip()
                     for address in addresses:
-                        list_of_apps.append((address, description, link))
+                        url = "https://maps.googleapis.com/maps/api/geocode/json?address={0}&key=AIzaSyBYDKuP2KKu93_LzHeh1UfDSQE_aF_8lOs".format(address)
+                        req = requests.get(url).json()
+                        lat = req['results'][0]['geometry']['location']['lat']
+                        lng = ['results'][0]['geometry']['location']['lng']
+                        list_of_apps.append((address, lat, lng, description, link))
                         print (address, description, link)
 
     except requests.ConnectionError:
@@ -85,7 +89,7 @@ def create_csv(data):
     with open('planning_apps.csv','w') as out:
         csv_out = UnicodeWriter(out)
         #csv_out=csv_writer.writer(out)
-        csv_out.writerow(['address','description', 'link'])
+        csv_out.writerow(['Address', 'Lat', 'Long', 'Description', 'Link'])
         for row in data:
             csv_out.writerow(row)
             
