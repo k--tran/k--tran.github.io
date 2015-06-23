@@ -94,6 +94,9 @@
                 title: d.address,
               });
               var appMarker = new google.maps.Marker(markerOptions);
+              google.maps.event.addListener(appMarker, 'click', function() {
+                infowindow.open(map,appMarker);
+              });
             });
            });
           
