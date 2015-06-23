@@ -95,9 +95,11 @@
           //var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
           console.log(csv_data);
           for (var i = 0, len = csv_data.length; i < len; i++) {
-            var latitude = parseFloat(csv_data[i].latitude);
-            console.log(csv_data[i].latitude);
-            var longitude = parseFloat(csv_data[i].longitude);
+            var latitude;
+            latitude = parseFloat(csv_data[i].latitude);
+            console.log(latitude);
+            var longitude;
+            longitude = parseFloat(csv_data[i].longitude);
             var markerOptions = new google.maps.Marker({
               position: new google.maps.LatLng(latitude, longitude),
               map: map,
