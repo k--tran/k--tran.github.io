@@ -21,7 +21,10 @@
       var csv_data;
       
       $.get('planning-map/apps.csv', function(data) {
-         alert(data);
+        data.forEach(function(d) {
+          d.latlng = 1;
+        }
+        });
          csv_data = jQuery.csv.toObjects(data);
       }, 'text');
       
