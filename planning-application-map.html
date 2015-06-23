@@ -75,8 +75,8 @@
           var latitude = parseFloat(csv_data[app].latitude);
           var longitude = parseFloat(csv_data[app].longitude);
           var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(latitude, longitude),
             map: map,
+            center: new google.maps.LatLng(latitude, longitude),
         });
         };
             
