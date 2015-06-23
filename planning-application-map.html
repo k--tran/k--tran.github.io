@@ -24,9 +24,11 @@
          csv_data = jQuery.csv.toObjects(data);
       }, 'text');
       
-      csv_data.forEach(function(d) {
-        d.latlng = 1;
-      });
+      for (var i = 0, len = csv_data.length; i < len; i++) {
+          //every element accesible via arr[i];
+          //example:
+          console.log(csv_data[i]);
+      }
       
       function initialize() {
         var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
