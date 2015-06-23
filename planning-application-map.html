@@ -17,8 +17,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="planning-map/jquery-csv.js"></script>
     <script type="text/javascript">
+      var appMarker;
       
-      var marker;
       function initialize() {
         var csv_data;
         
@@ -107,10 +107,13 @@
         for (var app in csv_data) {
           var latitude = parseFloat(csv_data[app].latitude);
           var longitude = parseFloat(csv_data[app].longitude);
-          marker = new google.maps.Marker({
+          var markerOptions = new google.maps.Marker({
             map: map,
-            center: new google.maps.LatLng(latitude, longitude),
-        });
+            position: new google.maps.LatLng(latitude, longitude),
+            title: csv_data[app].address,
+          console.log(markerOptions);
+          appMarker = new google.maps.Marker(markerOptions);
+          });
         };
       
         google.maps.event.addListener(marker, 'click', function() {
