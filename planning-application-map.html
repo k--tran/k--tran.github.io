@@ -83,11 +83,10 @@
           
           csv_data = jQuery.csv.toObjects(data);
           
-          var geocoder = new google.maps.Geocoder();
-          var g_latitude;
-          var g_longitude;
-          
           csv_data.forEach(function(d) {
+            var geocoder = new google.maps.Geocoder();
+            var g_latitude;
+            var g_longitude;
             geocoder.geocode( { 'address': d.address}, function(results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
                 var g_latitude = results[0].geometry.location.lat();
