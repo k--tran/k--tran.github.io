@@ -47,6 +47,8 @@
           },
           mapTypeId: 'custom_style'
         };
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
         var featureOpts = [
           {
             stylers: [
@@ -67,9 +69,6 @@
             ]
           }
         ];
-      
-        var map = new google.maps.Map(document.getElementById('map-canvas'),
-            mapOptions);
         
         for (var app in csv_data) {
           var latitude = parseFloat(csv_data[app].latitude);
