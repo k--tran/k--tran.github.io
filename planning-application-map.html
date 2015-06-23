@@ -108,7 +108,7 @@
           var longitude = parseFloat(csv_data[app].longitude);
           var markerOptions = new google.maps.Marker({
             position: new google.maps.LatLng(latitude, longitude),
-            map: map,
+            map: this,
             title: csv_data[app].address,
           });
           var appMarker = new google.maps.Marker(markerOptions);
