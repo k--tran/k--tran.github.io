@@ -19,9 +19,10 @@
     <script type="text/javascript">
 
       function initialize() {
+        var csv_data;
         
         $.get('planning-map/apps.csv', function(data) {
-          var csv_data = jQuery.csv.toObjects(data);
+          csv_data = jQuery.csv.toObjects(data);
           var geocoder = new google.maps.Geocoder();
           var latitude;
           var longitude;
@@ -36,7 +37,8 @@
             
            });
         }, 'text');
-        
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+          mapOptions);
         var centerLatlng = new google.maps.LatLng(-37.795218, 144.94777399999998);
         var mapOptions = {
           zoom: 10,
@@ -46,8 +48,6 @@
           },
           mapTypeId: 'custom_style'
         };
-        var map = new google.maps.Map(document.getElementById('map-canvas'),
-            mapOptions);
         var featureOpts = [
           {
             stylers: [
