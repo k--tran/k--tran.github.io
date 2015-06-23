@@ -35,10 +35,24 @@
           return result;
       }
       
-      var app_csv = $.get('planning-map/apps.csv', function(responseText) {
-        return responseText;
-        });
-      var data = $.csv.toObjects(app_csv);
+      function readTextFile(file) {
+          var rawFile = new XMLHttpRequest();
+          rawFile.open("GET", file, false);
+          rawFile.onreadystatechange = function ()
+          {
+              if(rawFile.readyState === 4)
+              {
+                  if(rawFile.status === 200 || rawFile.status == 0)
+                  {
+                      var allText = rawFile.responseText;
+                      alert(allText);
+                  }
+              }
+          }
+          rawFile.send(null);
+      }
+      
+      var data = $.csv.toObjects(readTextFile('planning-map/apps.csv'));
       
       function initialize() {
         var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
