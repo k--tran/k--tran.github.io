@@ -108,10 +108,11 @@
           var longitude = parseFloat(csv_data[app].longitude);
           var markerOptions = new google.maps.Marker({
             position: new google.maps.LatLng(latitude, longitude),
-            map: map,
+            //map: map,
             title: csv_data[app].address,
           });
           var appMarker = new google.maps.Marker(markerOptions);
+          appMarker.setMap(map);
           console.log(appMarker);
           //google.maps.event.addListener(appMarker, 'click', function() {
           //infowindow.open(map,appMarker);
