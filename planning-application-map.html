@@ -17,23 +17,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="planning-map/jquery-csv.js"></script>
     <script type="text/javascript">
-      var csv_data;
-      
-      $.get('planning-map/apps.csv', function(data) {
-        csv_data = jQuery.csv.toObjects(data);
-        var geocoder = new google.maps.Geocoder();
-        csv_data.forEach(function(d) {
-          geocoder.geocode( { 'address': d.address}, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-              var latitude = results[0].geometry.location.lat();
-              var longitude = results[0].geometry.location.lng();
-            } 
-          }); 
-          d.latlng = latitude;
-         });
-      }, 'text');
-      
       function initialize() {
+        var csv_data;
+        
+        $.get('planning-map/apps.csv', function(data) {
+          csv_data = jQuery.csv.toObjects(data);
+          var geocoder = new google.maps.Geocoder();
+          csv_data.forEach(function(d) {
+            geocoder.geocode( { 'address': d.address}, function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                var latitude = results[0].geometry.location.lat();
+                var longitude = results[0].geometry.location.lng();
+              } 
+            }); 
+            d.latlng = latitude;
+           });
+        }, 'text');
+        
         var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
         var mapOptions = {
           zoom: 4,
