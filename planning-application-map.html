@@ -94,23 +94,39 @@
         
           //var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
           console.log(csv_data);
-          for (var i = 0, len = csv_data.length; i < len; i++) {
-            var latitude;
-            latitude = parseFloat(csv_data[i].latitude);
+          
+          csv_data.forEach(function(d) {
+            var latitude = parseFloat(d.latitude);
             console.log(latitude);
-            var longitude;
-            longitude = parseFloat(csv_data[i].longitude);
+            var longitude = parseFloat(d.longitude);
             var markerOptions = new google.maps.Marker({
               position: new google.maps.LatLng(latitude, longitude),
               map: map,
-              title: csv_data[i].address,
+              title: d.address,
             });
             var appMarker = new google.maps.Marker(markerOptions);
-            //console.log(appMarker);
             google.maps.event.addListener(appMarker, 'click', function() {
-            infowindow.open(map,appMarker);
+              infowindow.open(map,appMarker);
             });
           };
+          
+          //for (var i = 0, len = csv_data.length; i < len; i++) {
+          //  var latitude;
+          //  latitude = parseFloat(csv_data[i].latitude);
+          //  console.log(latitude);
+          //  var longitude;
+          //  longitude = parseFloat(csv_data[i].longitude);
+          //  var markerOptions = new google.maps.Marker({
+          //    position: new google.maps.LatLng(latitude, longitude),
+          //    map: map,
+          //    title: csv_data[i].address,
+          //  });
+          //  var appMarker = new google.maps.Marker(markerOptions);
+            //console.log(appMarker);
+          //  google.maps.event.addListener(appMarker, 'click', function() {
+          //  infowindow.open(map,appMarker);
+          //  });
+          //};
           
           //for (var app in csv_data) {
             //var latitude = parseFloat(csv_data[app].latitude);
