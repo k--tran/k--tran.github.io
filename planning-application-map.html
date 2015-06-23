@@ -86,17 +86,19 @@
           csv_data.forEach(function(d) {
             var geocoder = new google.maps.Geocoder();
             geocoder.geocode( { 'address': d.address}, function(results, status) {
-              var lat = parseFloat(results[0].geometry.location.lat());
-              var long = parseFloat(results[0].geometry.location.lng());
-              var markerOptions = new google.maps.Marker({
-                position: new google.maps.LatLng(lat, long),
-                map: map,
-                title: d.address,
-              });
-              var appMarker = new google.maps.Marker(markerOptions);
-              google.maps.event.addListener(appMarker, 'click', function() {
-                infowindow.open(map,appMarker);
-              });
+              if (status == google.maps.GeocoderStatus.OK) {
+                var lat = parseFloat(results[0].geometry.location.lat());
+                var long = parseFloat(results[0].geometry.location.lng());
+                var markerOptions = new google.maps.Marker({
+                  position: new google.maps.LatLng(lat, long),
+                  map: map,
+                  title: d.address,
+                });
+                var appMarker = new google.maps.Marker(markerOptions);
+                google.maps.event.addListener(appMarker, 'click', function() {
+                  infowindow.open(map,appMarker);
+                });
+              }
             });
            });
           
