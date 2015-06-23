@@ -38,7 +38,7 @@
       
       $.get('planning-map/apps.csv', function(data) {
          alert(data);
-         var csv_data = jQuery.csv.toObjects(data.responseText);
+         var csv_data = jQuery.csv.toObjects(data);
       }, 'text');
       
       //var data = jQuery.csv.toObjects(csvFile.responseText);
