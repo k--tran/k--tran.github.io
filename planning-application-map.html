@@ -18,11 +18,13 @@
     <script src="planning-map/jquery-csv.js"></script>
     <script type="text/javascript">
       function initialize() {
-        var csv_data;
         
         $.get('planning-map/apps.csv', function(data) {
+          var csv_data;
           csv_data = jQuery.csv.toObjects(data);
           var geocoder = new google.maps.Geocoder();
+          var latitude;
+          var longitude;
           csv_data.forEach(function(d) {
             geocoder.geocode( { 'address': d.address}, function(results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
