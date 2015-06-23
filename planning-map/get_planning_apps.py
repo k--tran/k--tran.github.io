@@ -46,7 +46,7 @@ def planning_app_ids(suburb):
                         lat = req['results'][0]['geometry']['location']['lat']
                         lng = req['results'][0]['geometry']['location']['lng']
                         list_of_apps.append((address, lat, lng, description, link))
-                        print (address, description, link)
+                        print (address, lat, lng, description, link)
 
     except requests.ConnectionError:
         print "Connection error"
