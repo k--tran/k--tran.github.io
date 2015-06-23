@@ -93,14 +93,15 @@
           //};
         
           //var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
-          for (var app in csv_data) {
-            var latitude = parseFloat(csv_data[app].latitude);
-            console.log(app[latitude]);
-            var longitude = parseFloat(csv_data[app].longitude);
+          
+          for (var i = 0, len = csv_data.length; i < len; i++) {
+            var latitude = parseFloat(csv_data[i].latitude);
+            console.log(csv_data[i].latitude);
+            var longitude = parseFloat(csv_data[i].longitude);
             var markerOptions = new google.maps.Marker({
               position: new google.maps.LatLng(latitude, longitude),
               map: map,
-              title: csv_data[app].address,
+              title: csv_data[i].address,
             });
             var appMarker = new google.maps.Marker(markerOptions);
             //console.log(appMarker);
@@ -108,6 +109,22 @@
             infowindow.open(map,appMarker);
             });
           };
+          
+          //for (var app in csv_data) {
+            //var latitude = parseFloat(csv_data[app].latitude);
+            //console.log(app[latitude]);
+            //var longitude = parseFloat(csv_data[app].longitude);
+            //var markerOptions = new google.maps.Marker({
+              //position: new google.maps.LatLng(latitude, longitude),
+              //map: map,
+              //title: csv_data[app].address,
+            //});
+            //var appMarker = new google.maps.Marker(markerOptions);
+            //console.log(appMarker);
+            //google.maps.event.addListener(appMarker, 'click', function() {
+            //infowindow.open(map,appMarker);
+            //});
+          //};
         
         //map.mapTypes.set('custom_style', customMapType);
         }, 'text');
