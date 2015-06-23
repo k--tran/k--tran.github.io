@@ -89,12 +89,12 @@
             var long;
             geocoder.geocode( { 'address': d.address}, function(results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
-                lat = results[0].geometry.location.lat();
-                long = results[0].geometry.location.lng();
-                console.log(lat);
-                console.log(long);
+                lat = parseFloat(results[0].geometry.location.lat());
+                long = parseFloat(results[0].geometry.location.lng());
               } 
             });
+            console.log(lat);
+            console.log(long);
             var markerOptions = new google.maps.Marker({
               position: new google.maps.LatLng(lat, long),
               map: map,
