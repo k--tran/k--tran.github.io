@@ -31,7 +31,8 @@
               if (status == google.maps.GeocoderStatus.OK) {
                 var g_latitude = results[0].geometry.location.lat();
                 var g_longitude = results[0].geometry.location.lng();
-                d.latlng = g_latitude + ', ' + g_longitude;
+                d.latitude = g_latitude;
+                d.longitude = g_longitude;
               } 
             }); 
            });
