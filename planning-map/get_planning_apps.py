@@ -44,7 +44,7 @@ def planning_app_ids(suburb):
                         url = "https://maps.googleapis.com/maps/api/geocode/json?address={0}&key=AIzaSyBYDKuP2KKu93_LzHeh1UfDSQE_aF_8lOs".format(address)
                         req = requests.get(url).json()
                         lat = req['results'][0]['geometry']['location']['lat']
-                        lng = ['results'][0]['geometry']['location']['lng']
+                        lng = req['results'][0]['geometry']['location']['lng']
                         list_of_apps.append((address, lat, lng, description, link))
                         print (address, description, link)
 
