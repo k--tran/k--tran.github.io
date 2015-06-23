@@ -85,16 +85,22 @@
           
           csv_data.forEach(function(d) {
             var geocoder = new google.maps.Geocoder();
-            var g_latitude;
-            var g_longitude;
+            var lat;
+            var long;
             geocoder.geocode( { 'address': d.address}, function(results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
-                var g_latitude = results[0].geometry.location.lat();
-                var g_longitude = results[0].geometry.location.lng();
-                console.log(g_latitude);
-                console.log(g_longitude);
+                lat = results[0].geometry.location.lat();
+                long = results[0].geometry.location.lng();
+                console.log(lat);
+                console.log(long);
               } 
-            }); 
+            });
+            var markerOptions = new google.maps.Marker({
+              position: new google.maps.LatLng(latitude, longitude),
+              map: map,
+              title: csv_data[i].address,
+            });
+            var appMarker = new google.maps.Marker(markerOptions);
            });
           
           //for (var i = 0, len = csv_data.length; i < len; i++) {
