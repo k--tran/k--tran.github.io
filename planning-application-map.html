@@ -20,16 +20,16 @@
       var csv_data;
       
       $.get('planning-map/apps.csv', function(data) {
-         csv_data = jQuery.csv.toObjects(data);
-         var geocoder = new google.maps.Geocoder();
-         csv_data.forEach(function(d) {
-            geocoder.geocode( { 'address': address}, function(results, status) {
-              if (status == google.maps.GeocoderStatus.OK) {
-                var latitude = results[0].geometry.location.lat();
-                var longitude = results[0].geometry.location.lng();
-              } 
-            }); 
-           d.latlng = latitude;
+        csv_data = jQuery.csv.toObjects(data);
+        var geocoder = new google.maps.Geocoder();
+        csv_data.forEach(function(d) {
+          geocoder.geocode( { 'address': d.address}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+              var latitude = results[0].geometry.location.lat();
+              var longitude = results[0].geometry.location.lng();
+            } 
+          }); 
+          d.latlng = latitude;
          });
       }, 'text');
       
