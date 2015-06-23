@@ -119,17 +119,15 @@
       });
       }
       
-      google.maps.event.addDomListener(window, 'load', initialize);
-      
-//      function loadScript() {
-//        var script = document.createElement('script');
-//        script.type = 'text/javascript';
-//        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBYDKuP2KKu93_LzHeh1UfDSQE_aF_8lOs' +
-//            '&callback=initialize';
-//        document.body.appendChild(script);
-//      }
+      function loadScript() {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBYDKuP2KKu93_LzHeh1UfDSQE_aF_8lOs' +
+            '&callback=initialize';
+        document.body.appendChild(script);
+      }
 
-//      window.onload = loadScript;
+      window.onload = loadScript;
     </script>
   </head>
   <body>
