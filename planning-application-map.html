@@ -88,10 +88,10 @@
               //'</div>'+
               //'</div>';
         
-          //var infowindow = new google.maps.InfoWindow({
-              //content: contentString,
-              //maxWidth: 200
-          //});
+          var infowindow = new google.maps.InfoWindow({
+              content: contentString,
+              maxWidth: 200
+          });
           
           //var styledMapOptions = {
           //  name: 'Custom Style'
@@ -108,9 +108,9 @@
             });
             var appMarker = new google.maps.Marker(markerOptions);
             console.log(appMarker);
-            //google.maps.event.addListener(appMarker, 'click', function() {
-            //infowindow.open(map,appMarker);
-            //});
+            google.maps.event.addListener(appMarker, 'click', function() {
+            infowindow.open(map,appMarker);
+            });
           };
         
         //map.mapTypes.set('custom_style', customMapType);
