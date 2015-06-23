@@ -114,7 +114,7 @@
           });
           console.log(markerOptions);
           appMarker = new google.maps.Marker(markerOptions);
-          google.maps.event.addListener(marker, 'click', function() {
+          google.maps.event.addListener(appMarker, 'click', function() {
           infowindow.open(map,marker);
           });
         };
