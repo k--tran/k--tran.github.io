@@ -91,16 +91,16 @@
               if (status == google.maps.GeocoderStatus.OK) {
                 lat = parseFloat(results[0].geometry.location.lat());
                 long = parseFloat(results[0].geometry.location.lng());
+                console.log(lat);
+                console.log(long);
+                var markerOptions = new google.maps.Marker({
+                  position: new google.maps.LatLng(lat, long),
+                  map: map,
+                  title: d.address,
+                });
+                var appMarker = new google.maps.Marker(markerOptions);
               } 
             });
-            console.log(lat);
-            console.log(long);
-            var markerOptions = new google.maps.Marker({
-              position: new google.maps.LatLng(lat, long),
-              map: map,
-              title: d.address,
-            });
-            var appMarker = new google.maps.Marker(markerOptions);
            });
           
           //for (var i = 0, len = csv_data.length; i < len; i++) {
