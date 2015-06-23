@@ -95,7 +95,7 @@
           //var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
           for (var app in csv_data) {
             var latitude = parseFloat(csv_data[app].latitude);
-            console.log(latitude);
+            console.log(csv_data[app].latitude);
             var longitude = parseFloat(csv_data[app].longitude);
             var markerOptions = new google.maps.Marker({
               position: new google.maps.LatLng(latitude, longitude),
