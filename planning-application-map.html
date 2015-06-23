@@ -96,16 +96,7 @@
           console.log(csv_data);
           
           csv_data.forEach(function(d) {
-            console.log(d.latitude);
-            var markerOptions = new google.maps.Marker({
-              position: new google.maps.LatLng(d.latitude, d.longitude),
-              map: map,
-              title: d.address,
-            });
-            var appMarker = new google.maps.Marker(markerOptions);
-            google.maps.event.addListener(appMarker, 'click', function() {
-              infowindow.open(map,appMarker);
-            });
+            console.log(d);
           });
           
           //for (var i = 0, len = csv_data.length; i < len; i++) {
