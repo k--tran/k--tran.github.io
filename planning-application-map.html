@@ -47,8 +47,7 @@
           },
           mapTypeId: 'custom_style'
         };
-        var map = new google.maps.Map(document.getElementById('map-canvas'),
-            mapOptions);
+        
         var featureOpts = [
           {
             stylers: [
@@ -120,6 +119,8 @@
       
       function loadScript() {
         var script = document.createElement('script');
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
         script.type = 'text/javascript';
         script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBYDKuP2KKu93_LzHeh1UfDSQE_aF_8lOs' +
             '&callback=initialize';
