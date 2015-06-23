@@ -17,6 +17,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="planning-map/jquery-csv.js"></script>
     <script type="text/javascript">
+    
+      var csv_data;
       
       function csvParse(csv) {
         var lines = csv.split("\n");
@@ -38,7 +40,7 @@
       
       $.get('planning-map/apps.csv', function(data) {
          alert(data);
-         var csv_data = jQuery.csv.toObjects(data);
+         csv_data = jQuery.csv.toObjects(data);
       }, 'text');
       
       //var data = jQuery.csv.toObjects(csvFile.responseText);
