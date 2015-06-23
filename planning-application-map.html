@@ -111,9 +111,9 @@
             map: map,
             position: new google.maps.LatLng(latitude, longitude),
             title: csv_data[app].address,
+          });
           console.log(markerOptions);
           appMarker = new google.maps.Marker(markerOptions);
-          });
         };
       
         google.maps.event.addListener(marker, 'click', function() {
