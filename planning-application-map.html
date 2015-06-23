@@ -39,7 +39,7 @@
       var csvFile;
       
       $.get('planning-map/apps.csv', function(data) {
-         var data = csvParse(csvFile);
+         var data = csvParse(csvFile.responseText);
       }, 'text');
       
       //var data = jQuery.csv.toObjects(csvFile.responseText);
