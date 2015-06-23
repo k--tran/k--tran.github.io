@@ -21,11 +21,12 @@
       var csv_data;
       
       $.get('planning-map/apps.csv', function(data) {
-        data.forEach(function(d) {
-          d.latlng = 1;
-        });
          csv_data = jQuery.csv.toObjects(data);
       }, 'text');
+      
+      csv_data.forEach(function(d) {
+        d.latlng = 1;
+      });
       
       function initialize() {
         var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
