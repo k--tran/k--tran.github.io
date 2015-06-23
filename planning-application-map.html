@@ -50,24 +50,24 @@
         };
         var map = new google.maps.Map(document.getElementById('map-canvas'),
           mapOptions);
-        var featureOpts = [
-          {
-            stylers: [
-              { hue: "#00ffe6" },
-              { saturation: -20 }
-            ]
-          },
-          {
-            elementType: 'labels',
-            stylers: [
-              { visibility: 'on' }
-            ]
-          },
-          {
-            featureType: "all",
-            stylers: [
-              { saturation: -30 }
-            ]
+        //var featureOpts = [
+        //  {
+        //    stylers: [
+        //      { hue: "#00ffe6" },
+        //      { saturation: -20 }
+        //    ]
+        //  },
+        //  {
+        //    elementType: 'labels',
+        //    stylers: [
+        //      { visibility: 'on' }
+        //    ]
+        //  },
+        //  {
+        //    featureType: "all",
+        //    stylers: [
+        //      { saturation: -30 }
+        //    ]
           }
         ];
             
@@ -97,11 +97,11 @@
             //maxWidth: 200
         //});
         
-        var styledMapOptions = {
-          name: 'Custom Style'
-        };
+        //var styledMapOptions = {
+        //  name: 'Custom Style'
+        //};
       
-        var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
+        //var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
         
         for (var app in csv_data) {
           var latitude = parseFloat(csv_data[app].latitude);
@@ -119,7 +119,7 @@
           //});
         };
         
-        map.mapTypes.set('custom_style', customMapType);
+        //map.mapTypes.set('custom_style', customMapType);
         console.log(map);
       }
       
