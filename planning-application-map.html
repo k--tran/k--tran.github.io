@@ -96,9 +96,9 @@
           console.log(csv_data);
           
           csv_data.forEach(function(d) {
-            var latitude = parseFloat(d.latitude);
+            var latitude = d.latitude;
             console.log(latitude);
-            var longitude = parseFloat(d.longitude);
+            var longitude = d.longitude;
             var markerOptions = new google.maps.Marker({
               position: new google.maps.LatLng(latitude, longitude),
               map: map,
