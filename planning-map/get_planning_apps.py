@@ -91,6 +91,7 @@ def create_csv(data):
         #csv_out=csv_writer.writer(out)
         csv_out.writerow(['Address', 'Lat', 'Long', 'Description', 'Link'])
         for row in data:
+            
             csv_out.writerow(row)
             
 http://stackoverflow.com/questions/28921096/loading-csv-with-filereader-to-make-js-objects-for-map-markers-maps-api
