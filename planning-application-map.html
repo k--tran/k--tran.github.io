@@ -35,24 +35,9 @@
           return result;
       }
       
-      function readTextFile(file) {
-          var rawFile = new XMLHttpRequest();
-          rawFile.open("GET", file, false);
-          rawFile.onreadystatechange = function ()
-          {
-              if(rawFile.readyState === 4)
-              {
-                  if(rawFile.status === 200 || rawFile.status == 0)
-                  {
-                      var allText = rawFile.responseText;
-                      alert(allText);
-                  }
-              }
-          }
-          rawFile.send(null);
-      }
+      var csvFile = jQuery.get('planning-map/apps.csv', function(data) {alert(data); });
       
-      var data = $.csv.toObjects(readTextFile('planning-map/apps.csv'));
+      var data = $.csv.toObjects(csvFile);
       
       function initialize() {
         var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
