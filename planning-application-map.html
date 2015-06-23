@@ -17,12 +17,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="planning-map/jquery-csv.js"></script>
     <script type="text/javascript">
-
-      var geocoder = new google.maps.Geocoder();
       var csv_data;
       
       $.get('planning-map/apps.csv', function(data) {
          csv_data = jQuery.csv.toObjects(data);
+         var geocoder = new google.maps.Geocoder();
          csv_data.forEach(function(d) {
             geocoder.geocode( { 'address': address}, function(results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
