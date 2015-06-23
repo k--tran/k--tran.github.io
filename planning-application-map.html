@@ -15,7 +15,6 @@
      #map-canvas { height: 100%; margin: 0; padding: 0;}
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
     <script src="planning-map/jquery-csv.js"></script>
     <script type="text/javascript">
 
@@ -102,6 +101,8 @@
       
         var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
         
+        map.mapTypes.set('custom_style', customMapType);
+        
         for (var app in csv_data) {
           var latitude = parseFloat(csv_data[app].latitude);
           var longitude = parseFloat(csv_data[app].longitude);
@@ -110,8 +111,6 @@
             center: new google.maps.LatLng(latitude, longitude),
         });
         };
-      
-        map.mapTypes.set('custom_style', customMapType);
       
         google.maps.event.addListener(marker, 'click', function() {
           infowindow.open(map,marker);
