@@ -65,41 +65,37 @@
           console.log(csv_data)
           
           csv_data.forEach(function(d) {
-            var geocoder = new google.maps.Geocoder();
-            geocoder.geocode( { 'address': d.address}, function(results, status) {
-              if (status == google.maps.GeocoderStatus.OK) {
-                var lat = parseFloat(results[0].geometry.location.lat());
-                var long = parseFloat(results[0].geometry.location.lng());
-                var markerOptions = new google.maps.Marker({
-                  position: new google.maps.LatLng(lat, long),
-                  map: map,
-                  title: d.address,
-                });
-                var appMarker = new google.maps.Marker(markerOptions);
-                var contentString = '<div id="content">'+
-                  '<div id="siteNotice">'+
-                  '</div>'+
-                  '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
-                  '<div id="bodyContent">'+
-                  '<p><b>' +
-                  d.address +
-                  '</b></p>' +
-                  '<p>' + d.description + '</p>' +
-                  '<p>Link<a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-                  '</p>'+
-                  '</div>'+
-                  '</div>';
-        
-                var infowindow = new google.maps.InfoWindow({
-                    content: contentString,
-                    maxWidth: 200
-                });
-                google.maps.event.addListener(appMarker, 'click', function() {
-                  infowindow.open(map,appMarker);
-                });
-              }
+            var address = d.Address;
+            var lat = parseFloat(d.Lat);
+            var long = parseFloat(d.Long);
+            var markerOptions = new google.maps.Marker({
+              position: new google.maps.LatLng(lat, long),
+              map: map,
+              title: d.Address,
             });
-           });
+            var appMarker = new google.maps.Marker(markerOptions);
+            var contentString = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+              '<div id="bodyContent">'+
+              '<p><b>' +
+              d.Address +
+              '</b></p>' +
+              '<p>' + d.description + '</p>' +
+              '<p><a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">Link</a>'+
+              '</p>'+
+              '</div>'+
+              '</div>';
+    
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString,
+                maxWidth: 200
+            });
+            google.maps.event.addListener(appMarker, 'click', function() {
+              infowindow.open(map,appMarker);
+            });
+          });
           
           //for (var i = 0, len = csv_data.length; i < len; i++) {
           //  var latitude;
