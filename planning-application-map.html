@@ -93,10 +93,21 @@
           //};
         
           //var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
-          console.log(csv_data);
           
+          var geocoder = new google.maps.Geocoder();
+          var g_latitude;
+          var g_longitude;
           csv_data.forEach(function(d) {
             console.log(d);
+            geocoder.geocode( { 'address': d.address}, function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                var g_latitude = results[0].geometry.location.lat();
+                var g_longitude = results[0].geometry.location.lng();
+                var latitude = g_latitude;
+                var longitude = g_longitude;
+                console.log(latitude);
+              } 
+            });
           });
           
           //for (var i = 0, len = csv_data.length; i < len; i++) {
