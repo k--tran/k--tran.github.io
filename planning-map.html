@@ -26,40 +26,40 @@
           var mapOptions = {
             zoom: 15,
             center: centerLatlng,
-            //mapTypeControlOptions: {
-            //  mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'custom_style']
-            //},
-            //mapTypeId: 'custom_style'
+            mapTypeControlOptions: {
+              mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'custom_style']
+            },
+            mapTypeId: 'custom_style'
           };
           var map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
-          //var featureOpts = [
-          //  {
-          //    stylers: [
-          //      { hue: "#00ffe6" },
-          //      { saturation: -20 }
-          //    ]
-          //  },
-          //  {
-          //    elementType: 'labels',
-          //    stylers: [
-          //      { visibility: 'on' }
-          //    ]
-          //  },
-          //  {
-          //    featureType: "all",
-          //    stylers: [
-          //      { saturation: -30 }
-          //    ]
-          //  }
-          //];
+          var featureOpts = [
+            {
+              stylers: [
+                { hue: "#00ffe6" },
+                { saturation: -20 }
+              ]
+            },
+            {
+              elementType: 'labels',
+              stylers: [
+                { visibility: 'on' }
+              ]
+            },
+            {
+              featureType: "all",
+              stylers: [
+                { saturation: -30 }
+              ]
+            }
+          ];
   
           
-          //var styledMapOptions = {
-          //  name: 'Custom Style'
-          //};
+          var styledMapOptions = {
+            name: 'Custom Style'
+          };
         
-          //var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
+          var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
           
           csv_data = jQuery.csv.toObjects(data);
           console.log(csv_data)
