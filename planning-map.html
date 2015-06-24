@@ -76,7 +76,9 @@
             var lat = parseFloat(d.Lat);
             var long = parseFloat(d.Long);
             var icon = {
+              url: 'http://maps.google.com/mapfiles/kml/paddle/blu-circle.png',
               size: new google.maps.Size(20, 20),
+              origin: new google.maps.Point(0,0),
             };
             var markerOptions = new google.maps.Marker({
               position: new google.maps.LatLng(lat, long),
