@@ -32,7 +32,7 @@
         $.get('planning-map/apps.csv', function(data) {
           var centerLatlng = new google.maps.LatLng(-37.795218, 144.94777399999998);
           var mapOptions = {
-            zoom: 15,
+            zoom: 14,
             center: centerLatlng,
             mapTypeControlOptions: {
               mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'custom_style']
@@ -93,11 +93,12 @@
               '<div id="siteNotice">'+
               '</div>'+
               '<div id="bodyContent">'+
-              '<p><b>' +
-              d.Address +
+	      '<p><b><a href=' + d.Link + '>' + 
+              d.Address + '</a>'+
               '</b></p>' +
+	      '<p>' + d.PermitNo + '</p>' +
               '<p>' + d.Description + '</p>' +
-              '<p><a href=' + d.Link + '>Link</a>'+
+              '<p>Granted yet? ' + d.Issued +
               '</p>'+
               '</div>'+
               '</div>';
@@ -148,7 +149,7 @@
       <section>
         <h1>A map of all City of Melbourne planning permit applications</h1>
         <p><em>View the <a href="http://kelvin-tran.github.com/planing-map/">source of this content</a>.</em></p>
-        <p>A few years ago, I lived in house in Peel Street.  The house was great - double storey, backyard, large bedrooms, French windows.  Except for one thing - the noise.  I forgot what sleep was like for a whole year.</p>
+        <p>A few years ago, I lived in house in Peel Street, North Melbourne.  The house was great - double storey, backyard, large bedrooms, French windows.  Except for one thing - the noise.  I forgot what sleep was like for a whole year.</p>
         <p>This map should help you identify any noisy neighbour problems before you sign the lease or contract for sale.  It lists all planning permit applications filed within the past year and a half (last updated 24 June 2015), including both:</p>
         <ul>
           <li>concluded applications (expect some hammer smashing and electric saw buzzing)</li>
