@@ -22,7 +22,7 @@
 				.projection(projection);
 							 
 			//Define quantize scale to sort data values into buckets of color
-			var color = d3.scale.log()
+			var color = d3.scale.linear()
 				.range(['rgb(255,255,217)','rgb(237,248,177)','rgb(199,233,180)','rgb(127,205,187)','rgb(65,182,196)','rgb(29,145,192)','rgb(34,94,168)','rgb(37,52,148)','rgb(8,29,88)']);
 								//Colors taken from colorbrewer.js, included in the D3 download
 			//Create SVG element
