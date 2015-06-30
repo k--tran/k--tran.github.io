@@ -196,7 +196,7 @@ function type(d) {
 			//Bind data and create one path per GeoJSON feature
 			chloro_svg.selectAll("path")
         .data(json.features)
-        enter()
+        .enter()
         .append("path")
         .attr("d", chloro_path)
         .style("fill", function(d) {
