@@ -1,6 +1,6 @@
 var map = d3.geomap.choropleth()
     .geofile('foreign-lawyers/USA.json')
-    .colors(colorbrewer.YlGnBu[15])
+    .colors(colorbrewer.YlGnBu[9])
     .projection(d3.geo.albersUsa)
     .column('Percent')
     .format(function(d) {
