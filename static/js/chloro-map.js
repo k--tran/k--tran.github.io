@@ -1,9 +1,9 @@
 var map = d3.geomap.choropleth()
     .geofile('foreign-lawyers/USA.json')
     .projection(d3.geo.albersUsa)
-    .column('2014')
+    .column('Percent')
     .unitId('fips')
-    .scale(1000)
+    .scale(900)
     .legend(true);
 
 d3.csv('foreign-lawyers/aus-states.csv', function(error, data) {
