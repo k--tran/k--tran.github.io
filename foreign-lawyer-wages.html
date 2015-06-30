@@ -36,7 +36,7 @@ var all_lawyer_margin = {top: 20, right: 20, bottom: 80, left: 40},
 var all_lawyer_x = d3.scale.ordinal()
     .rangeRoundBands([0, all_lawyer_width], .1);
 var all_lawyer_y = d3.scale.linear()
-    .range(all_lawyer_height, 0]);
+    .range([all_lawyer_height, 0]);
 var all_lawyer_xAxis = d3.svg.axis()
     .scale(all_lawyer_x)
     .orient("bottom");
