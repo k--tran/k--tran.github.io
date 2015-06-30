@@ -43,7 +43,7 @@ var svg = d3.select("body").append("svg")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 d3.csv("foreign-lawyers/lawyer-wages.csv", type, function(error, data) {
   if (error) throw error;
-  x.domain(data.map(function(d) { return '$' + d.salary; }));
+  x.domain(data.map(function(d) { return d.salary; }));
   y.domain([0, d3.max(data, function(d) { return d.count; })]);
   svg.append("g")
       .attr("class", "x axis")
@@ -75,6 +75,7 @@ d3.csv("foreign-lawyers/lawyer-wages.csv", type, function(error, data) {
       .attr("height", function(d) { return height - y(d.count); });
 });
 function type(d) {
+  d.salary = '$' + d.salary;
   d.count = +d.count;
   return d;
 }
