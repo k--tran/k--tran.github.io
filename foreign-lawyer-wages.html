@@ -39,7 +39,6 @@ var y = d3.scale.linear()
     .range([height, 0]);
 var xAxis = d3.svg.axis()
     .scale(x)
-    .tickValues(x.filter(function(d, i) { return !(i % 2); }))
     .orient("bottom");
 var yAxis = d3.svg.axis()
     .scale(y)
@@ -98,6 +97,7 @@ var y = d3.scale.linear()
     .range([height, 0]);
 var xAxis = d3.svg.axis()
     .scale(x)
+    .tickValues(x.domain().filter(function(d, i) { return !(i % 2); }));
     .orient("bottom");
 var yAxis = d3.svg.axis()
     .scale(y)
