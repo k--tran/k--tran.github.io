@@ -4,6 +4,7 @@ var map = d3.geomap.choropleth()
     .projection(d3.geo.albersUsa)
     .column('Percent')
     .format(function(d) {
+        d = d * 100;
         return d3.format(',.03f')(d) + '%';
     })
     .unitId('fips')
