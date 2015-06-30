@@ -78,8 +78,8 @@ d3.csv("foreign-lawyers/lawyer-wages.csv", type, function(error, data) {
       .attr("class", "bar")
       .attr("x", function(d) { return all_lawyer_x(d.salary); })
       .attr("width", all_lawyer_x.rangeBand())
-      .attr("y", function(d) { return y(d.count); })
-      .attr("height", function(d) { return height - y(d.count); });
+      .attr("y", function(d) { return all_lawyer_y(d.count); })
+      .attr("height", function(d) { return height - all_lawyer_y(d.count); });
 });
 function type(d) {
   d.salary = '$' + d.salary.replace('000-', '-').replace(new RegExp('000$'), 'k');
