@@ -124,7 +124,7 @@ d3.csv("foreign-lawyers/aus-wages.csv", type, function(error, data) {
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Number of foreign lawyers");
+      .text("Number of Aus workers");
   aus_svg.selectAll(".bar")
       .data(data)
     .enter().append("rect")
