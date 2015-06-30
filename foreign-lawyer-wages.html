@@ -30,32 +30,32 @@
   <div id='aus-wages'></div>
   <div id='map'></div>
 <script>
-var all-lawyer-margin = {top: 20, right: 20, bottom: 80, left: 40},
-    all-lawyer-width = 960 - all-lawyer-margin.left - all-lawyer-margin.right,
-    all-lawyer-height = 500 - all-lawyer-margin.top - all-lawyer-margin.bottom;
-var all-lawyer-x = d3.scale.ordinal()
-    .rangeRoundBands([0, all-lawyer-width], .1);
-var all-lawyer-y = d3.scale.linear()
-    .range([all-lawyer-height, 0]);
-var all-lawyer-xAxis = d3.svg.axis()
-    .scale(all-lawyer-x)
+var all_lawyer_margin = {top: 20, right: 20, bottom: 80, left: 40},
+    all_lawyer_width = 960 - all_lawyer_margin.left - all_lawyer_margin.right,
+    all_lawyer_height = 500 - all_lawyer_margin.top - all_lawyer_margin.bottom;
+var all_lawyer_x = d3.scale.ordinal()
+    .rangeRoundBands([0, all_lawyer_width], .1);
+var all_lawyer_y = d3.scale.linear()
+    .range(all_lawyer_height, 0]);
+var all_lawyer_xAxis = d3.svg.axis()
+    .scale(all_lawyer_x)
     .orient("bottom");
-var all-lawyer-yAxis = d3.svg.axis()
-    .scale(all-lawyer-y)
+var all_lawyer_yAxis = d3.svg.axis()
+    .scale(all_lawyer_y)
     .orient("left");
 var all-lawyer-svg = d3.select("#all-lawyer-wages").append("svg")
-    .attr("width", all-lawyer-width + all-lawyer-margin.left + all-lawyer-margin.right)
-    .attr("height", all-lawyer-height + all-lawyer-margin.top + all-lawyer-margin.bottom)
+    .attr("width", all_lawyer_width + all_lawyer_margin.left + all_lawyer_margin.right)
+    .attr("height", all_lawyer_height + all_lawyer_margin.top + all_lawyer_margin.bottom)
   .append("g")
-    .attr("transform", "translate(" + all-lawyer-margin.left + "," + all-lawyer-margin.top + ")");
+    .attr("transform", "translate(" + all_lawyer_margin.left + "," + all_lawyer_margin.top + ")");
 d3.csv("foreign-lawyers/lawyer-wages.csv", type, function(error, data) {
   if (error) throw error;
-  all-lawyer-x.domain(data.map(function(d) { return d.salary; }));
-  all-lawyer-y.domain([0, d3.max(data, function(d) { return d.count; })]);
-  all-lawyer-svg.append("g")
+  all_lawyer_x.domain(data.map(function(d) { return d.salary; }));
+  all_lawyer_y.domain([0, d3.max(data, function(d) { return d.count; })]);
+  all_lawyer_svg.append("g")
       .attr("class", "x axis")
-      .attr("transform", "translate(0," + all-lawyer-height + ")")
-      .call(all-lawyer-xAxis)
+      .attr("transform", "translate(0," + all_lawyer_height + ")")
+      .call(all_lawyer_xAxis)
       .selectAll("text")  
       .style("text-anchor", "end")
       .attr("dx", "-.8em")
@@ -63,21 +63,21 @@ d3.csv("foreign-lawyers/lawyer-wages.csv", type, function(error, data) {
       .attr("transform", function(d) {
           return "rotate(-45)" 
           });
-  all-lawyer-svg.append("g")
+  all_lawyer_svg.append("g")
       .attr("class", "y axis")
-      .call(all-lawyer-yAxis)
+      .call(all_lawyer_yAxis)
     .append("text")
       .attr("transform", "rotate(-90)")
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
       .text("Number of foreign lawyers");
-  all-lawyer-svg.selectAll(".bar")
+  all_lawyer_svg.selectAll(".bar")
       .data(data)
     .enter().append("rect")
       .attr("class", "bar")
       .attr("x", function(d) { return x(d.salary); })
-      .attr("width", all-lawyer-x.rangeBand())
+      .attr("width", all_lawyer_x.rangeBand())
       .attr("y", function(d) { return y(d.count); })
       .attr("height", function(d) { return height - y(d.count); });
 });
