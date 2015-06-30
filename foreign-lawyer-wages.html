@@ -57,7 +57,7 @@ d3.csv("foreign-lawyers/lawyer-wages.csv", type, function(error, data) {
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Salary band");
+      .text("Number of foreign lawyers");
   svg.selectAll(".bar")
       .data(data)
     .enter().append("rect")
