@@ -88,33 +88,33 @@ function type(d) {
 }
 </script>
 <script>
-var margin = {top: 20, right: 20, bottom: 80, left: 40},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
-var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .1);
-var y = d3.scale.linear()
-    .range([height, 0]);
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .tickValues(x.domain().filter(function(d, i) { return !(i % 2); }))
+var aus_margin = {top: 20, right: 20, bottom: 80, left: 40},
+    aus_width = 960 - aus_margin.left - aus_margin.right,
+    aus_height = 500 - aus_margin.top - aus_margin.bottom;
+var aus_x = d3.scale.ordinal()
+    .rangeRoundBands([0, aus_width], .1);
+var aus_y = d3.scale.linear()
+    .range([aus_height, 0]);
+var aus_xAxis = d3.svg.axis()
+    .scale(aus_x)
+    .tickValues(aus_x.domain().filter(function(d, i) { return !(i % 2); }))
     .orient("bottom");
-var yAxis = d3.svg.axis()
-    .scale(y)
+var aus_yAxis = d3.svg.axis()
+    .scale(aus_y)
     .orient("left");
 var aus_svg = d3.select("#aus-wages").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", aus_width + aus_margin.left + aus_margin.right)
+    .attr("height", aus_height + aus_margin.top + aus_margin.bottom)
   .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(" + aus_margin.left + "," + aus_margin.top + ")");
 d3.csv("foreign-lawyers/aus-wages.csv", type, function(error, data) {
   if (error) throw error;
-  x.domain(data.map(function(d) { return d.salary; }));
-  y.domain([0, d3.max(data, function(d) { return d.count; })]);
+  aus_x.domain(data.map(function(d) { return d.salary; }));
+  aus_y.domain([0, d3.max(data, function(d) { return d.count; })]);
   aus_svg.append("g")
       .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis)
+      .attr("transform", "translate(0," + aus_height + ")")
+      .call(aus_xAxis)
       .selectAll("text")  
       .style("text-anchor", "end")
       .attr("dx", "-.8em")
@@ -135,10 +135,10 @@ d3.csv("foreign-lawyers/aus-wages.csv", type, function(error, data) {
       .data(data)
     .enter().append("rect")
       .attr("class", "bar")
-      .attr("x", function(d) { return x(d.salary); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.count); })
-      .attr("height", function(d) { return height - y(d.count); });
+      .attr("x", function(d) { return aus_x(d.salary); })
+      .attr("width", aus_x.rangeBand())
+      .attr("y", function(d) { return aus_y(d.count); })
+      .attr("height", function(d) { return height - aus_y(d.count); });
 });
 function type(d) {
   d.salary = '$' + d.salary.replace('000-', '-').replace(new RegExp('000$'), 'k');
