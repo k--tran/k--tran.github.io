@@ -9,7 +9,7 @@
     fill: brown;
   }
   .axis {
-    font: 10px sans-serif;
+    font: 9px sans-serif;
   }
   .axis path,
   .axis line {
@@ -97,7 +97,6 @@ var aus_y = d3.scale.linear()
     .range([aus_height, 0]);
 var aus_xAxis = d3.svg.axis()
     .scale(aus_x)
-    .tickValues(aus_x.domain().filter(function(d, i) { return !(i % 2); }))
     .orient("bottom");
 var aus_yAxis = d3.svg.axis()
     .scale(aus_y)
