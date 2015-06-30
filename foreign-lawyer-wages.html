@@ -110,6 +110,7 @@ var aus_svg = d3.select("#aus-wages").append("svg")
 d3.csv("foreign-lawyers/aus-wages.csv", type, function(error, data) {
   if (error) throw error;
   aus_x.domain(data.map(function(d) { return d.salary; }));
+  console.log(aus_x.domain().filter(function(d, i) { return !(i % 2); }));
   aus_y.domain([0, d3.max(data, function(d) { return d.count; })]);
   aus_svg.append("g")
       .attr("class", "x axis")
