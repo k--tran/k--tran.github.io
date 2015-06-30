@@ -23,7 +23,7 @@
 <body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 <script>
-var margin = {top: 20, right: 20, bottom: 60, left: 40},
+var margin = {top: 20, right: 20, bottom: 80, left: 40},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 var x = d3.scale.ordinal()
@@ -43,7 +43,7 @@ var svg = d3.select("body").append("svg")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 d3.csv("foreign-lawyers/lawyer-wages.csv", type, function(error, data) {
   if (error) throw error;
-  x.domain(data.map(function(d) { return d.salary; }));
+  x.domain(data.map(function(d) { return '$' + d.salary; }));
   y.domain([0, d3.max(data, function(d) { return d.count; })]);
   svg.append("g")
       .attr("class", "x axis")
@@ -54,7 +54,7 @@ d3.csv("foreign-lawyers/lawyer-wages.csv", type, function(error, data) {
       .attr("dx", "-.8em")
       .attr("dy", ".15em")
       .attr("transform", function(d) {
-          return "rotate(-55)" 
+          return "rotate(-45)" 
           });
   svg.append("g")
       .attr("class", "y axis")
