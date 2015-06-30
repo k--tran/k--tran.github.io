@@ -97,8 +97,7 @@ var y = d3.scale.linear()
     .range([height, 0]);
 var xAxis = d3.svg.axis()
     .scale(x)
-    .orient("bottom")
-    .tickPadding(4);
+    .orient("bottom");
 var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left");
@@ -120,7 +119,7 @@ d3.csv("foreign-lawyers/aus-wages.csv", type, function(error, data) {
       .attr("dx", "-.8em")
       .attr("dy", ".15em")
       .attr("transform", function(d) {
-          return "rotate(-45)" 
+          return "rotate(-55)" 
           });
   aus_svg.append("g")
       .attr("class", "y axis")
