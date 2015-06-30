@@ -1,4 +1,4 @@
-,State,Abbrev,Percent,Raw,fips
+,state,Abbrev,Percent,value,fips
 0,Alabama,AK,0.001,10,US01
 1,Alaska,AL,0.001,7,US02
 2,Arizona,AR,0.000,3,US04
