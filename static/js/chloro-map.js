@@ -8,7 +8,7 @@ var map = d3.geomap.choropleth()
         return d3.format(',.03f')(d) + '%';
     })
     .unitId('fips')
-    .scale(900)
+    .scale(700)
     .legend(true);
 
 d3.csv('foreign-lawyers/aus-states.csv', function(error, data) {
