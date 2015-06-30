@@ -44,7 +44,7 @@ var svg = d3.select("body").append("svg")
 d3.csv("foreign-lawyers/lawyer-wages.csv", type, function(error, data) {
   if (error) throw error;
   x.domain(data.map(function(d) { return d.salary; }));
-  y.domain([0, d3.max(data, function(d) { return d.count; })]);
+  y.domain([0, d3.max(data, function(d) { return d.num; })]);
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
@@ -71,11 +71,11 @@ d3.csv("foreign-lawyers/lawyer-wages.csv", type, function(error, data) {
       .attr("class", "bar")
       .attr("x", function(d) { return x(d.salary); })
       .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.count); })
-      .attr("height", function(d) { return height - y(d.count); });
+      .attr("y", function(d) { return y(d.num); })
+      .attr("height", function(d) { return height - y(d.num); });
 });
 function type(d) {
-  d.count = +d.count;
+  d.num = +d.num;
   return d;
 }
 </script>
