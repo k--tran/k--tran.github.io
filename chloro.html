@@ -31,7 +31,7 @@
 						.attr("width", w)
 						.attr("height", h);
 			//Load in agriculture data
-			d3.csv("foreign-lawyers/chloro.csv", function(data) {
+			d3.csv("foreign-lawyers/aus-states.csv", function(data) {
 				//Set input domain for color scale
 				color.domain([
 					d3.min(data, function(d) { return d.value; }), 
