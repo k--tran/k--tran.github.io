@@ -22,8 +22,8 @@
 				.projection(projection);
 							 
 			//Define scale to sort data values into buckets of color
-			var color = d3.scale.pow().exponent(1.5)
-				.range(['rgb(241,238,246)','rgb(208,209,230)','rgb(166,189,219)','rgb(116,169,207)','rgb(43,140,190)','rgb(4,90,141)']);
+			var color = d3.scale.pow().exponent(1)
+				.range(['rgb(255,247,251)','rgb(236,226,240)','rgb(208,209,230)','rgb(166,189,219)','rgb(103,169,207)','rgb(54,144,192)','rgb(2,129,138)','rgb(1,108,89)','rgb(1,70,54)']);
 			//Create SVG element
 			var svg = d3.select("body")
 				.append("svg")
