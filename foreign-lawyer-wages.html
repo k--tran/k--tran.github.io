@@ -47,9 +47,15 @@ d3.csv("foreign-lawyers/lawyer-wages.csv", type, function(error, data) {
   y.domain([0, d3.max(data, function(d) { return d.count; })]);
   svg.append("g")
       .attr("class", "x axis")
-      .attr("transform", "rotate(-90)")
       .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
+      .call(xAxis)
+      .selectAll("text")  
+      .style("text-anchor", "end")
+      .attr("dx", "-.8em")
+      .attr("dy", ".15em")
+      .attr("transform", function(d) {
+          return "rotate(-65)" 
+          });
   svg.append("g")
       .attr("class", "y axis")
       .call(yAxis)
