@@ -75,7 +75,7 @@ d3.csv("foreign-lawyers/lawyer-wages.csv", type, function(error, data) {
       .attr("height", function(d) { return height - y(d.count); });
 });
 function type(d) {
-  d.salary = '$' + d.salary;
+  d.salary = '$' + d.salary.replace('000-', '-');
   d.count = +d.count;
   return d;
 }
