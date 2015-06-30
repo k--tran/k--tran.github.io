@@ -3,9 +3,6 @@ var map = d3.geomap.choropleth()
     .colors(colorbrewer.YlGnBu[9])
     .projection(d3.geo.albersUsa)
     .column('Percent')
-    .format(function(d) {
-        return d3.format(',.02f')(d) + '%';
-    })
     .unitId('fips')
     .scale(900)
     .legend(true);
