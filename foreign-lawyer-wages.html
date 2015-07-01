@@ -300,6 +300,12 @@
 				.orient("bottom");
 		d3.csv("foreign-lawyers/TX.csv", type, function(error, data) {
 			var tx_height = tx_barHeight * data.length + tx_margin.bottom;
+			var tx_yAxis = d3.svg.axis()
+					.scale(tx_y)
+					.orient("left");
+			var tx_y = d3.scale.ordinal()
+					.domain(data.map(function(d) { return d.profession; }))
+					.rangeBands([0, tx_barHeight * data.length]);
 		  tx_x.domain([0, d3.max(data, function(d) { return d.value; })]);
 		  tx_chart.attr("height", tx_height);
 			tx_chart.append("g")
