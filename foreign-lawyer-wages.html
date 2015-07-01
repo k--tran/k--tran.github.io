@@ -185,33 +185,33 @@
 			  aus_x.domain(data.map(function(d) { return d.salary; }));
 			  aus_y.domain([0, d3.max(data, function(d) { return d.count; })]);
 			  aus_svg.append("g")
-			      .attr("class", "x axis")
-			      .attr("transform", "translate(0," + aus_height + ")")
-			      .call(aus_xAxis)
-			      .selectAll("text")  
-			      .style("text-anchor", "end")
-			      .attr("dx", "-.8em")
-			      .attr("dy", ".15em")
-			      .attr("transform", function(d) {
-			          return "rotate(-55)" 
-			          });
+						.attr("class", "x axis")
+						.attr("transform", "translate(0," + aus_height + ")")
+						.call(aus_xAxis)
+						.selectAll("text")  
+						.style("text-anchor", "end")
+						.attr("dx", "-.8em")
+						.attr("dy", ".15em")
+						.attr("transform", function(d) {
+							return "rotate(-55)" 
+						});
 			  aus_svg.append("g")
-			      .attr("class", "y axis")
-			      .call(aus_yAxis)
+						.attr("class", "y axis")
+						.call(aus_yAxis)
 			    .append("text")
-			      .attr("transform", "rotate(-90)")
-			      .attr("y", 6)
-			      .attr("dy", ".71em")
-			      .style("text-anchor", "end")
-			      .text("Number of Aus workers");
+						.attr("transform", "rotate(-90)")
+						.attr("y", 6)
+						.attr("dy", ".71em")
+						.style("text-anchor", "end")
+						.text("Number of Aus workers");
 			  aus_svg.selectAll(".bar")
-			      .data(data)
+						.data(data)
 			    .enter().append("rect")
-			      .attr("class", "bar")
-			      .attr("x", function(d) { return aus_x(d.salary); })
-			      .attr("width", aus_x.rangeBand())
-			      .attr("y", function(d) { return aus_y(d.count); })
-			      .attr("height", function(d) { return height - aus_y(d.count); });
+						.attr("class", "bar")
+						.attr("x", function(d) { return aus_x(d.salary); })
+						.attr("width", aus_x.rangeBand())
+						.attr("y", function(d) { return aus_y(d.count); })
+						.attr("height", function(d) { return height - aus_y(d.count); });
 			});
 			function type(d) {
 			  d.salary = '$' + d.salary.replace('000-', '-').replace(new RegExp('000$'), 'k');
@@ -268,21 +268,21 @@
 					}
 					//Bind data and create one path per GeoJSON feature
 					chloro_svg.selectAll("path")
-		        .data(json.features)
-		        .enter()
-		        .append("path")
-		        .attr("d", chloro_path)
-		        .style("fill", function(d) {
-		            //Get data value
-		            var value = d.properties.value;
-		            if (value) {
-		              //If value exists…
-		              return chloro_color(value);
-		            } else {
-		              //If value is undefined…
-		              return "#ccc";
-		  			   	}
-		          });
+							.data(json.features)
+							.enter()
+							.append("path")
+								.attr("d", chloro_path)
+								.style("fill", function(d) {
+									//Get data value
+									var value = d.properties.value;
+									if (value) {
+									  //If value exists…
+									  return chloro_color(value);
+									} else {
+									  //If value is undefined…
+									  return "#ccc";
+									}
+								});
 				});
 			});
 		</script>
@@ -312,6 +312,9 @@
 					.attr("class", "x axis")
 					.attr("transform", "translate(0," + (tx_height - tx_margin.bottom) + ")")
 				.call(tx_xAxis)
+			tx_chart.append("g")
+					.attr("class", "y axis")
+				.call(tx_yAxis)
 		  var tx_bar = tx_chart.selectAll("rect")
 		      .data(data)
 		    .enter().append("g")
