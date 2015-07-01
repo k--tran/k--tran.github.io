@@ -279,7 +279,7 @@
 		    tx_barHeight = 20;
 		var tx_x = d3.scale.linear()
 		    .range([0, tx_width]);
-		var tx_chart = d3.select("#")
+		var tx_chart = d3.select("#texas-chart")
 		    .attr("width", tx_width);
 		d3.tsv("foreign-lawyers/TX.tsv", type, function(error, data) {
 		  tx_x.domain([0, d3.max(data, function(d) { return d.value; })]);
