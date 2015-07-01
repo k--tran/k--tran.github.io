@@ -65,13 +65,11 @@
       <section>
 				<h1>Foreign workers in the USA</h1>
 				<p><em>View the <a href="http://github.com/kelvin-tran/foreign-lawyers/">source of this content</a>.</em></p>
-				<p>The US agency responsible for managing working visas for foreigners in the US publishes annual data about the applications it receives.  The data reveals, for each application, the employer, the job title, location of work and the employee's salary, amongst other things.</p>
-				<div class="highlight">
-					<pre>
-						<span class="n">LCA_CASE_NUMBER	STATUS,	LCA_CASE_SUBMIT,	DECISION_DATE,	VISA_CLASS,	LCA_CASE_EMPLOYMENT_START_DATE,	LCA_CASE_EMPLOYMENT_END_DATE,	LCA_CASE_EMPLOYER_NAME,	LCA_CASE_EMPLOYER_ADDRESS,	LCA_CASE_EMPLOYER_CITY,	LCA_CASE_EMPLOYER_STATE,	LCA_CASE_EMPLOYER_POSTAL_CODE,	LCA_CASE_SOC_CODE,	LCA_CASE_SOC_NAME,	LCA_CASE_JOB_TITLE,	LCA_CASE_WAGE_RATE_FROM,	LCA_CASE_WAGE_RATE_TO,	LCA_CASE_WAGE_RATE_UNIT,	FULL_TIME_POS,	TOTAL_WORKERS,	LCA_CASE_WORKLOC1_CITY,	LCA_CASE_WORKLOC1_STATE,	PW_1,	PW_UNIT_1,	PW_SOURCE_1,	OTHER_WAGE_SOURCE_1,	YR_SOURCE_PUB_1,	LCA_CASE_WORKLOC2_CITY,	LCA_CASE_WORKLOC2_STATE,	PW_2,	PW_UNIT_2,	PW_SOURCE_2,	OTHER_WAGE_SOURCE_2,	YR_SOURCE_PUB_2,	LCA_CASE_NAICS_CODE</span>
-						<span class="n">I-203-14042-820159,	CERTIFIED,	11/02/2014,	18/02/2014,	E-3 Australian,	1/04/2014,	31/03/2016,	"ACUMATICA INC	4030 LAKE WASHINGTON BLVD	KIRKLAND	WA	98033",	11-2021,	Marketing Managers,	VICE PRESIDENT - PARTNER STRATEGY,	300000,	,	Year,	Y,	1,	KIRKLAND,	WA,	134597.00,	Year,	OES,	OFLC ONLINE DATA CENTER,	2013,	,	,	,	,	,	,	,	511210,</span>
-					</pre>
-				</div>
+				<p>The US agency responsible for managing working visas for foreigners in the US publishes annual data about the applications it receives.  The data reveals, for each application, the employer, the job title, location of work and the employee's salary, amongst other things.  This is what the data looks like (in csv format):</p>
+				<pre>
+						<code>LCA_CASE_NUMBER	STATUS,LCA_CASE_SUBMIT,DECISION_DATE,VISA_CLASS,LCA_CASE_EMPLOYMENT_START_DATE,LCA_CASE_EMPLOYMENT_END_DATE,LCA_CASE_EMPLOYER_NAME,LCA_CASE_EMPLOYER_ADDRESS,LCA_CASE_EMPLOYER_CITY,LCA_CASE_EMPLOYER_STATE,	LCA_CASE_EMPLOYER_POSTAL_CODE,LCA_CASE_SOC_CODE,LCA_CASE_SOC_NAME,LCA_CASE_JOB_TITLE,LCA_CASE_WAGE_RATE_FROM,LCA_CASE_WAGE_RATE_TO,LCA_CASE_WAGE_RATE_UNIT,FULL_TIME_POS,TOTAL_WORKERS,	LCA_CASE_WORKLOC1_CITY,	LCA_CASE_WORKLOC1_STATE,	PW_1,	W_UNIT_1, PW_SOURCE_1,OTHER_WAGE_SOURCE_1,YR_SOURCE_PUB_1,LCA_CASE_WORKLOC2_CITY,	LCA_CASE_WORKLOC2_STATE,PW_2,PW_UNIT_2,PW_SOURCE_2,OTHER_WAGE_SOURCE_2,YR_SOURCE_PUB_2,LCA_CASE_NAICS_CODE</code>
+						<code>I-203-14042-820159,CERTIFIED,11/02/2014,18/02/2014,E-3 Australian,1/04/2014,31/03/2016,"ACUMATICA INC	4030 LAKE WASHINGTON BLVD	KIRKLAND	WA	98033",11-2021,Marketing Managers,VICE PRESIDENT - PARTNER STRATEGY,300000,,Year,Y,1,KIRKLAND,WA,134597.00,Year,OES,OFLC ONLINE DATA CENTER,2013,,,,,,,,511210,</code>
+				</pre>
       	<p>You can search the data <a href="http://data.jobsintech.io/">here</a>, but what about the bigger picture?  As a lawyer, I'm always happy to find quicker ways to do repetitive tasks, especially when it might involve manually processing 510,000 plus rows of data.  Thankfully, an ability to code (JavaScript and D3js) and some competence in MS Excel (pivot tables) allows me to analyse the data without too much effort.</p>
       	<p>For example, we can group wages earned by foreign lawyers employed on a full-time basis and plot a frequency distribution (see Figure 1).</p>
       	<div id='all-lawyer-wages'></div>
