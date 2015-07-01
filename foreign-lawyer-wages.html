@@ -1,215 +1,262 @@
-<!DOCTYPE html>
-<head>
-  <meta charset="utf-8">
-  <style>
-  .bar {
-    fill: steelblue;
-  }
-  .bar:hover {
-    fill: brown;
-  }
-  .axis {
-    font: 9px sans-serif;
-  }
-  .axis path,
-  .axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-  }
-  .x.axis path {
-    display: none;
-  }
-  </style>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
-</head>
-<body>
-  <div id='all-lawyer-wages'></div>
-  <div id='aus-wages'></div>
-  <div id='map'></div>
-<script>
-// lawyer wages graph
-var margin = {top: 20, right: 20, bottom: 80, left: 40},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
-var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .1);
-var y = d3.scale.linear()
-    .range([height, 0]);
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom");
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left");
-var svg = d3.select("#all-lawyer-wages").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-d3.csv("foreign-lawyers/lawyer-wages.csv", type, function(error, data) {
-  if (error) throw error;
-  x.domain(data.map(function(d) { return d.salary; }));
-  y.domain([0, d3.max(data, function(d) { return d.count; })]);
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis)
-      .selectAll("text")  
-      .style("text-anchor", "end")
-      .attr("dx", "-.8em")
-      .attr("dy", ".15em")
-      .attr("transform", function(d) {
-          return "rotate(-45)" 
-          });
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Number of foreign lawyers");
-  svg.selectAll(".bar")
-      .data(data)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", function(d) { return x(d.salary); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.count); })
-      .attr("height", function(d) { return height - y(d.count); });
-});
-function type(d) {
-  d.salary = '$' + d.salary.replace('000-', '-').replace(new RegExp('000$'), 'k');
-  d.count = +d.count;
-  return d;
-}
-</script>
-<script>
-// australian wages
-var aus_margin = {top: 20, right: 20, bottom: 80, left: 40},
-    aus_width = 960 - aus_margin.left - aus_margin.right,
-    aus_height = 500 - aus_margin.top - aus_margin.bottom;
-var aus_x = d3.scale.ordinal()
-    .rangeRoundBands([0, aus_width], .1);
-var aus_y = d3.scale.linear()
-    .range([aus_height, 0]);
-var aus_xAxis = d3.svg.axis()
-    .scale(aus_x)
-    .orient("bottom");
-var aus_yAxis = d3.svg.axis()
-    .scale(aus_y)
-    .orient("left");
-var aus_svg = d3.select("#aus-wages").append("svg")
-    .attr("width", aus_width + aus_margin.left + aus_margin.right)
-    .attr("height", aus_height + aus_margin.top + aus_margin.bottom)
-  .append("g")
-    .attr("transform", "translate(" + aus_margin.left + "," + aus_margin.top + ")");
-d3.csv("foreign-lawyers/aus-wages.csv", type, function(error, data) {
-  if (error) throw error;
-  aus_x.domain(data.map(function(d) { return d.salary; }));
-  aus_y.domain([0, d3.max(data, function(d) { return d.count; })]);
-  aus_svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + aus_height + ")")
-      .call(aus_xAxis)
-      .selectAll("text")  
-      .style("text-anchor", "end")
-      .attr("dx", "-.8em")
-      .attr("dy", ".15em")
-      .attr("transform", function(d) {
-          return "rotate(-55)" 
-          });
-  aus_svg.append("g")
-      .attr("class", "y axis")
-      .call(aus_yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Number of Aus workers");
-  aus_svg.selectAll(".bar")
-      .data(data)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", function(d) { return aus_x(d.salary); })
-      .attr("width", aus_x.rangeBand())
-      .attr("y", function(d) { return aus_y(d.count); })
-      .attr("height", function(d) { return height - aus_y(d.count); });
-});
-function type(d) {
-  d.salary = '$' + d.salary.replace('000-', '-').replace(new RegExp('000$'), 'k');
-  d.count = +d.count;
-  return d;
-}
-</script>
-<script>
-	//Width and height
-	var chloro_w = 700;
-	var chloro_h = 450;
-	//Define map projection
-	var chloro_projection = d3.geo.albersUsa()
-		.translate([chloro_w/2, chloro_h/2])
-		.scale([700]);
-	//Define path generator
-	var chloro_path = d3.geo.path()
-		.projection(chloro_projection);
-					 
-	//Define scale to sort data values into buckets of color
-	var chloro_color = d3.scale.pow().exponent(.9)
-		.range(['rgb(247,251,255)','rgb(222,235,247)','rgb(198,219,239)','rgb(158,202,225)','rgb(107,174,214)','rgb(66,146,198)','rgb(33,113,181)','rgb(8,81,156)','rgb(8,48,107)']);
-	//Create SVG element
-	var chloro_svg = d3.select("#map")
-		.append("svg")
-		.attr("width", chloro_w)
-		.attr("height", chloro_h);
-	//Load in agriculture data
-	d3.csv("foreign-lawyers/aus-states.csv", function(data) {
-		//Set input domain for color scale
-		chloro_color.domain([
-			d3.min(data, function(d) { return d.value; }), 
-			d3.max(data, function(d) { return d.value; })
-		]);
-		//Load in GeoJSON data
-		d3.json("foreign-lawyers/us-states.json", function(json) {
-			//Merge the ag. data and GeoJSON
-			//Loop through once for each ag. data value
-			for (var i = 0; i < data.length; i++) {
-				//Grab state name
-				var dataState = data[i].state;
-				//Grab data value, and convert from string to float
-				var dataValue = parseFloat(data[i].value);
-				//Find the corresponding state inside the GeoJSON
-				for (var j = 0; j < json.features.length; j++) {
-					var jsonState = json.features[j].properties.name;
-					if (dataState == jsonState) {
-						//Copy the data value into the JSON
-						json.features[j].properties.value = dataValue;
-						//Stop looking through the JSON
-						break;
-					}
-				}		
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Kelvin Tran - GitHub</title>
+    
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+	  <style>
+	  .bar {
+	    fill: steelblue;
+	  }
+	  .bar:hover {
+	    fill: brown;
+	  }
+	  .axis {
+	    font: 9px sans-serif;
+	  }
+	  .axis path,
+	  .axis line {
+	    fill: none;
+	    stroke: #000;
+	    shape-rendering: crispEdges;
+	  }
+	  .x.axis path {
+	    display: none;
+	  }
+	  </style>
+	  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-64459548-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+	<body>
+    <div class="wrapper">
+      <header>
+        <h1>Kelvin Tran</h1>
+        <p>
+        <img src="static/profile.jpg" style="width:140px;height:140px;border-radius: 10px;">
+        </p>
+        <p>I am a lawyer, but I do other things</p>
+        <p class="view"><a href="http://github.com/kelvin-tran">GitHub</a> | <a href="http://twitter.com/_kelvintran">Twitter</a> | <a href="https://au.linkedin.com/in/kelvintran">LinkedIn</a></p>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <!-- Kelvin Tran GitHub pages index -->
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-8039812474190322"
+               data-ad-slot="3954668498"
+               data-ad-format="auto"></ins>
+          <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </header>
+      <section>
+				<div id='all-lawyer-wages'></div>
+				<div id='aus-wages'></div>
+				<div id='map'></div>
+      </section>
+      <footer>
+        <p>This page is maintained by <a href="http://github.com/kelvin-tran">Kelvin Tran</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+		<script>
+			// lawyer wages graph
+			var margin = {top: 20, right: 20, bottom: 80, left: 40},
+			    width = 960 - margin.left - margin.right,
+			    height = 500 - margin.top - margin.bottom;
+			var x = d3.scale.ordinal()
+			    .rangeRoundBands([0, width], .1);
+			var y = d3.scale.linear()
+			    .range([height, 0]);
+			var xAxis = d3.svg.axis()
+			    .scale(x)
+			    .orient("bottom");
+			var yAxis = d3.svg.axis()
+			    .scale(y)
+			    .orient("left");
+			var svg = d3.select("#all-lawyer-wages").append("svg")
+			    .attr("width", width + margin.left + margin.right)
+			    .attr("height", height + margin.top + margin.bottom)
+			  .append("g")
+			    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+			d3.csv("foreign-lawyers/lawyer-wages.csv", type, function(error, data) {
+			  if (error) throw error;
+			  x.domain(data.map(function(d) { return d.salary; }));
+			  y.domain([0, d3.max(data, function(d) { return d.count; })]);
+			  svg.append("g")
+			      .attr("class", "x axis")
+			      .attr("transform", "translate(0," + height + ")")
+			      .call(xAxis)
+			      .selectAll("text")  
+			      .style("text-anchor", "end")
+			      .attr("dx", "-.8em")
+			      .attr("dy", ".15em")
+			      .attr("transform", function(d) {
+			          return "rotate(-45)" 
+			          });
+			  svg.append("g")
+			      .attr("class", "y axis")
+			      .call(yAxis)
+			    .append("text")
+			      .attr("transform", "rotate(-90)")
+			      .attr("y", 6)
+			      .attr("dy", ".71em")
+			      .style("text-anchor", "end")
+			      .text("Number of foreign lawyers");
+			  svg.selectAll(".bar")
+			      .data(data)
+			    .enter().append("rect")
+			      .attr("class", "bar")
+			      .attr("x", function(d) { return x(d.salary); })
+			      .attr("width", x.rangeBand())
+			      .attr("y", function(d) { return y(d.count); })
+			      .attr("height", function(d) { return height - y(d.count); });
+			});
+			function type(d) {
+			  d.salary = '$' + d.salary.replace('000-', '-').replace(new RegExp('000$'), 'k');
+			  d.count = +d.count;
+			  return d;
 			}
-			//Bind data and create one path per GeoJSON feature
-			chloro_svg.selectAll("path")
-        .data(json.features)
-        .enter()
-        .append("path")
-        .attr("d", chloro_path)
-        .style("fill", function(d) {
-            //Get data value
-            var value = d.properties.value;
-            if (value) {
-              //If value exists…
-              return chloro_color(value);
-            } else {
-              //If value is undefined…
-              return "#ccc";
-  			   	}
-          });
-		});
-	});
-</script>
-</body>
+		</script>
+		<script>
+			// australian wages
+			var aus_margin = {top: 20, right: 20, bottom: 80, left: 40},
+			    aus_width = 960 - aus_margin.left - aus_margin.right,
+			    aus_height = 500 - aus_margin.top - aus_margin.bottom;
+			var aus_x = d3.scale.ordinal()
+			    .rangeRoundBands([0, aus_width], .1);
+			var aus_y = d3.scale.linear()
+			    .range([aus_height, 0]);
+			var aus_xAxis = d3.svg.axis()
+			    .scale(aus_x)
+			    .orient("bottom");
+			var aus_yAxis = d3.svg.axis()
+			    .scale(aus_y)
+			    .orient("left");
+			var aus_svg = d3.select("#aus-wages").append("svg")
+			    .attr("width", aus_width + aus_margin.left + aus_margin.right)
+			    .attr("height", aus_height + aus_margin.top + aus_margin.bottom)
+			  .append("g")
+			    .attr("transform", "translate(" + aus_margin.left + "," + aus_margin.top + ")");
+			d3.csv("foreign-lawyers/aus-wages.csv", type, function(error, data) {
+			  if (error) throw error;
+			  aus_x.domain(data.map(function(d) { return d.salary; }));
+			  aus_y.domain([0, d3.max(data, function(d) { return d.count; })]);
+			  aus_svg.append("g")
+			      .attr("class", "x axis")
+			      .attr("transform", "translate(0," + aus_height + ")")
+			      .call(aus_xAxis)
+			      .selectAll("text")  
+			      .style("text-anchor", "end")
+			      .attr("dx", "-.8em")
+			      .attr("dy", ".15em")
+			      .attr("transform", function(d) {
+			          return "rotate(-55)" 
+			          });
+			  aus_svg.append("g")
+			      .attr("class", "y axis")
+			      .call(aus_yAxis)
+			    .append("text")
+			      .attr("transform", "rotate(-90)")
+			      .attr("y", 6)
+			      .attr("dy", ".71em")
+			      .style("text-anchor", "end")
+			      .text("Number of Aus workers");
+			  aus_svg.selectAll(".bar")
+			      .data(data)
+			    .enter().append("rect")
+			      .attr("class", "bar")
+			      .attr("x", function(d) { return aus_x(d.salary); })
+			      .attr("width", aus_x.rangeBand())
+			      .attr("y", function(d) { return aus_y(d.count); })
+			      .attr("height", function(d) { return height - aus_y(d.count); });
+			});
+			function type(d) {
+			  d.salary = '$' + d.salary.replace('000-', '-').replace(new RegExp('000$'), 'k');
+			  d.count = +d.count;
+			  return d;
+			}
+		</script>
+		<script>
+			//Width and height
+			var chloro_w = 700;
+			var chloro_h = 450;
+			//Define map projection
+			var chloro_projection = d3.geo.albersUsa()
+				.translate([chloro_w/2, chloro_h/2])
+				.scale([700]);
+			//Define path generator
+			var chloro_path = d3.geo.path()
+				.projection(chloro_projection);
+							 
+			//Define scale to sort data values into buckets of color
+			var chloro_color = d3.scale.pow().exponent(.9)
+				.range(['rgb(247,251,255)','rgb(222,235,247)','rgb(198,219,239)','rgb(158,202,225)','rgb(107,174,214)','rgb(66,146,198)','rgb(33,113,181)','rgb(8,81,156)','rgb(8,48,107)']);
+			//Create SVG element
+			var chloro_svg = d3.select("#map")
+				.append("svg")
+				.attr("width", chloro_w)
+				.attr("height", chloro_h);
+			//Load in agriculture data
+			d3.csv("foreign-lawyers/aus-states.csv", function(data) {
+				//Set input domain for color scale
+				chloro_color.domain([
+					d3.min(data, function(d) { return d.value; }), 
+					d3.max(data, function(d) { return d.value; })
+				]);
+				//Load in GeoJSON data
+				d3.json("foreign-lawyers/us-states.json", function(json) {
+					//Merge the ag. data and GeoJSON
+					//Loop through once for each ag. data value
+					for (var i = 0; i < data.length; i++) {
+						//Grab state name
+						var dataState = data[i].state;
+						//Grab data value, and convert from string to float
+						var dataValue = parseFloat(data[i].value);
+						//Find the corresponding state inside the GeoJSON
+						for (var j = 0; j < json.features.length; j++) {
+							var jsonState = json.features[j].properties.name;
+							if (dataState == jsonState) {
+								//Copy the data value into the JSON
+								json.features[j].properties.value = dataValue;
+								//Stop looking through the JSON
+								break;
+							}
+						}		
+					}
+					//Bind data and create one path per GeoJSON feature
+					chloro_svg.selectAll("path")
+		        .data(json.features)
+		        .enter()
+		        .append("path")
+		        .attr("d", chloro_path)
+		        .style("fill", function(d) {
+		            //Get data value
+		            var value = d.properties.value;
+		            if (value) {
+		              //If value exists…
+		              return chloro_color(value);
+		            } else {
+		              //If value is undefined…
+		              return "#ccc";
+		  			   	}
+		          });
+				});
+			});
+		</script>
+	</body>
+</html>
