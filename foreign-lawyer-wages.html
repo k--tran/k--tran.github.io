@@ -301,7 +301,7 @@
 				d.value = +d.value; // coerce to number
 				return d;
 				}
-			}
+			};
 			var tx_height = tx_barHeight * data.length + tx_margin.bottom;
 		  tx_x.domain([0, d3.max(data, function(d) { return d.value; })]);
 		  tx_chart.attr("height", tx_height);
