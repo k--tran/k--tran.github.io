@@ -288,7 +288,7 @@
 		</script>
 		<script>
 		var tx_margin = {right: 10, bottom: 30, left: 250},
-				tx_width = 350 - tx_margin.left - tx_margin.right,
+				tx_width = 500 - tx_margin.left - tx_margin.right,
 				tx_barHeight = 20;
 		var tx_x = d3.scale.linear()
 				.range([0, tx_width]);
@@ -310,7 +310,6 @@
 					.scale(tx_y)
 					.orient("left");
 		  tx_x.domain([0, d3.max(data, function(d) { return d.value; })]);
-		  tx_chart.attr("height", tx_height);
 			tx_chart.append("g")
 					.attr("class", "x axis")
 					.attr("transform", "translate(0," + (tx_height - tx_margin.bottom) + ")")
