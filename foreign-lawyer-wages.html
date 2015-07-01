@@ -281,7 +281,7 @@
 		    .range([0, tx_width]);
 		var tx_chart = d3.select("#texas-chart")
 		    .attr("width", tx_width);
-		d3.tsv("foreign-lawyers/TX.tsv", type, function(error, data) {
+		d3.csv("foreign-lawyers/TX.csv", type, function(error, data) {
 		  tx_x.domain([0, d3.max(data, function(d) { return d.value; })]);
 		  tx_chart.attr("height", tx_barHeight * data.length);
 		  var tx_bar = tx_chart.selectAll("g")
