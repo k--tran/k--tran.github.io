@@ -294,7 +294,7 @@
 				.range([0, tx_width]);
 		var tx_chart = d3.select("#texas-chart").append("svg")
 				.attr("class", "chart")
-				.attr("width", tx_width + tx_margin.left + tx_margin.right);
+				.attr("width", tx_width + tx_margin.left + tx_margin.right)
 			.append("g")
 				.attr("transform", "translate(" + tx_margin.left + ",0)");
 		var tx_xAxis = d3.svg.axis()
@@ -318,9 +318,9 @@
 					.attr("class", "y axis")
 				.call(tx_yAxis)
 		  var tx_bar = tx_chart.selectAll("rect")
-		      .data(data)
-		    .enter().append("g")
-		      .attr("transform", function(d, i) { return "translate(0," + i * tx_barHeight + ")"; });
+					.data(data)
+				.enter().append("g")
+					.attr("transform", function(d, i) { return "translate(0," + i * tx_barHeight + ")"; });
 			tx_bar.append("rect")
 					.attr("width", function(d) { return tx_x(d.value); })
 					.attr("height", tx_barHeight - 1);
