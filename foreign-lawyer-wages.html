@@ -77,10 +77,12 @@
       <section>
 				<h1>Foreign workers in the USA</h1>
 				<p><em>View the <a href="http://github.com/kelvin-tran/foreign-lawyers/">source of this content</a>.</em></p>
-				<p>The US agency responsible for managing working visas for foreigners in the US publishes annual data about the applications it receives.  The data reveals, for each application, the employer, the job title, location of work and the employee's salary, amongst other things.  This is what the data looks like (in csv format):</p>
+				<p>The rage in journalism these days seems to be to use data.  I'm thinking FiveThirtyEight's <a href="http://fivethirtyeight.com/datalab/">DataLab</a> and the Guardian's <a href="http://www.theguardian.com/data">Datablog</a>, but even the New York Times is including more and more data visualisations in its online <a href="http://www.nytimes.com/interactive/2015/04/20/upshot/missing-black-men.html?abt=0002&abg=1&_r=3">pieces</a>.</p>
+				<p>By contrast, lawyers seem to care very little about data, maybe apart from the world of <a href="http://www.justice.gov/atr/public/guidelines/hhi.html">competition/antitrust</a> and the sentencing of criminals.  But eventually, the evidential value of data, because the proit is often so compelling.
+				<p>Anyway, lawyers should care about dataThe US agency responsible for managing working visas for foreigners in the US publishes annual data about the applications it receives.  The data reveals, for each application, the employer, the job title, location of work and the employee's salary, amongst other things.  This is what the data looks like (in csv format):</p>
 				<pre><code>LCA_CASE_NUMBER,STATUS,LCA_CASE_SUBMIT,DECISION_DATE,VISA_CLASS,LCA_CASE_EMPLOYMENT_START_DATE,LCA_CASE_EMPLOYMENT_END_DATE,LCA_CASE_EMPLOYER_NAME,LCA_CASE_EMPLOYER_ADDRESS,LCA_CASE_EMPLOYER_CITY,LCA_CASE_EMPLOYER_STATE,LCA_CASE_EMPLOYER_POSTAL_CODE,LCA_CASE_SOC_CODE,LCA_CASE_SOC_NAME,LCA_CASE_JOB_TITLE,LCA_CASE_WAGE_RATE_FROM,LCA_CASE_WAGE_RATE_TO,LCA_CASE_WAGE_RATE_UNIT,FULL_TIME_POS,TOTAL_WORKERS,LCA_CASE_WORKLOC1_CITY,LCA_CASE_WORKLOC1_STATE,PW_1,W_UNIT_1, PW_SOURCE_1,OTHER_WAGE_SOURCE_1,YR_SOURCE_PUB_1,LCA_CASE_WORKLOC2_CITY,LCA_CASE_WORKLOC2_STATE,PW_2,PW_UNIT_2,PW_SOURCE_2,OTHER_WAGE_SOURCE_2,YR_SOURCE_PUB_2,LCA_CASE_NAICS_CODE
 		I-203-14042-820159,CERTIFIED,11/02/2014,18/02/2014,E-3 Australian,1/04/2014,31/03/2016,"ACUMATICA INC 4030 LAKE WASHINGTON BLVD KIRKLAND WA 98033",11-2021,Marketing Managers,VICE PRESIDENT - PARTNER STRATEGY,300000,,Year,Y,1,KIRKLAND,WA,134597.00,Year,OES,OFLC ONLINE DATA CENTER,2013,,,,,,,,511210,</code></pre>
-				<p>You can search the data <a href="http://data.jobsintech.io/">here</a>, but what about the bigger picture?  As a lawyer, I'm always happy to find quicker ways to do repetitive tasks, especially when it might involve manually processing 510,000 plus rows of data.  Thankfully, an ability to code (JavaScript and D3js) and some competence in MS Excel (pivot tables) allows me to analyse the data without too much effort.</p>
+				<p>You can search the data <a href="http://data.jobsintech.io/">here</a>, but what about the bigger picture?  As a lawyer, I'm always happy to find quicker ways to do repetitive tasks, especially when it might involve manually processing 510,000 plus rows of data.  Thankfully, an ability to code (JavaScript and D3.js) and some competence in MS Excel (pivot tables) allows me to analyse the data and create visualisations without too much effort.</p>
 				<p>For example, we can group wages earned by foreign lawyers employed on a full-time basis and plot a frequency distribution (see Figure 1).</p>
 				<div id='all-lawyer-wages'></div>
 				<p><em>Figure 1.  Foreign lawyers seem to be doing alright for themselves.</em></p>
@@ -92,9 +94,10 @@
 				<p><em>Figure 3.  What's going on in Washington and Texas?</em></p>
 				<p>To find out about Washington (Figure 4) and Texas (Figure 5), we isolated the applications from employers in those states.</p>
 				<div id="wash-chart"></div>
-				<p><em>Turns out its mainly tech employees (Amazon, Microsoft together employ about 250 Australians on E-3s in Washington.)</em></p>
+				<p><em>Figure 4.  Turns out its mainly tech employees (Amazon, Microsoft together employ about 250 Australians on E-3s in Washington.)</em></p>
 				<div id="texas-chart"></div>
-				<p><em>And engineers in Texas - not surprising given the energy focus there.</em></p>
+				<p><em>Figure 5.  And engineers in Texas - not surprising given the energy focus there.</em></p>
+				<p>I hope you enjoyed reading - you can learn more about visualising data in D3.js <a href="http://d3js.org/">here</a>.</p>
       </section>
       <footer>
         <p>This page is maintained by <a href="http://github.com/kelvin-tran">Kelvin Tran</a></p>
@@ -327,7 +330,7 @@
 					.attr("height", tx_barHeight - 1);
 		});
 		function type(d) {
-			if (d.value > 10) {
+			if (d.value > 15) {
 			d.value = +d.value; // coerce to number
 			return d;
 			}
