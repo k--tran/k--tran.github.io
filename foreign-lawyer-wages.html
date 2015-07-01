@@ -333,5 +333,51 @@
 			}
 		};
 		</script>
+		<script>
+		var wa_margin = {right: 10, bottom: 30, left: 250},
+				wa_width = 500 - wa_margin.left - wa_margin.right,
+				wa_barHeight = 20;
+		var wa_x = d3.scale.linear()
+				.range([0, wa_width]);
+		var wa_xAxis = d3.svg.axis()
+				.scale(wa_x)
+				.orient("bottom");
+		d3.csv("foreign-lawyers/WA.csv", type, function(error, data) {
+			var wa_height = wa_barHeight * data.length + wa_margin.bottom;
+			var wa_chart = d3.select("#wash-chart").append("svg")
+					.attr("class", "chart")
+					.attr("width", wa_width + wa_margin.left + wa_margin.right)
+					.attr("height", wa_height)
+				.append("g")
+					.attr("transform", "translate(" + wa_margin.left + ",0)");
+			var wa_y = d3.scale.ordinal()
+					.domain(data.map(function(d) { return d.profession; }))
+					.rangeBands([0, wa_barHeight * data.length]);
+			var wa_yAxis = d3.svg.axis()
+					.scale(wa_y)
+					.orient("left");
+		  wa_x.domain([0, d3.max(data, function(d) { return d.value; })]);
+			wa_chart.append("g")
+					.attr("class", "x axis")
+					.attr("transform", "translate(0," + (wa_height - wa_margin.bottom) + ")")
+				.call(wa_xAxis)
+			wa_chart.append("g")
+					.attr("class", "y axis")
+				.call(wa_yAxis)
+		  var wa_bar = wa_chart.selectAll("rect")
+					.data(data)
+				.enter().append("g")
+					.attr("transform", function(d, i) { return "translate(0," + i * wa_barHeight + ")"; });
+			wa_bar.append("rect")
+					.attr("width", function(d) { return wa_x(d.value); })
+					.attr("height", wa_barHeight - 1);
+		});
+		function type(d) {
+			if (d.value > 10) {
+			d.value = +d.value; // coerce to number
+			return d;
+			}
+		};
+		</script>
 	</body>
 </html>
