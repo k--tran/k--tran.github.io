@@ -30,6 +30,15 @@
 	  .x.axis path {
 	    display: none;
 	  }
+	.chart rect {
+	  fill: steelblue;
+	}
+	
+	.chart text {
+	  fill: white;
+	  font: 10px sans-serif;
+	  text-anchor: end;
+	}
 	  </style>
 	  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
     <script>
@@ -279,7 +288,7 @@
 		    tx_barHeight = 20;
 		var tx_x = d3.scale.linear()
 		    .range([0, tx_width]);
-		var tx_chart = d3.select("#texas-chart")
+		var tx_chart = d3.select("#texas-chart").append("svg")
 		    .attr("width", tx_width);
 		d3.csv("foreign-lawyers/TX.csv", type, function(error, data) {
 		  tx_x.domain([0, d3.max(data, function(d) { return d.value; })]);
