@@ -284,11 +284,14 @@
 			});
 		</script>
 		<script>
-		var tx_width = 420,
+		var tx_margin = {top: 20, right: 10, bottom: 80, left: 30},
+				tx_width = 420 - tx_margin.left - tx_margin.right,
+				tx_height = 350 - tx_margin.top - tx_margin.bottom,
 		    tx_barHeight = 20;
 		var tx_x = d3.scale.linear()
 		    .range([0, tx_width]);
 		var tx_chart = d3.select("#texas-chart").append("svg")
+				.attr("class", "chart")
 		    .attr("width", tx_width);
 		d3.csv("foreign-lawyers/TX.csv", type, function(error, data) {
 		  tx_x.domain([0, d3.max(data, function(d) { return d.value; })]);
