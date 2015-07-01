@@ -63,24 +63,24 @@
         </script>
       </header>
       <section>
-				<h1>Foreign workers in the USA</h1>
-				<p><em>View the <a href="http://github.com/kelvin-tran/foreign-lawyers/">source of this content</a>.</em></p>
-				<p>The US agency responsible for managing working visas for foreigners in the US publishes annual data about the applications it receives.  The data reveals, for each application, the employer, the job title, location of work and the employee's salary, amongst other things.  This is what the data looks like (in csv format):</p>
-				<pre>
-				<code>LCA_CASE_NUMBER,STATUS,LCA_CASE_SUBMIT,DECISION_DATE,VISA_CLASS,LCA_CASE_EMPLOYMENT_START_DATE,LCA_CASE_EMPLOYMENT_END_DATE,LCA_CASE_EMPLOYER_NAME,LCA_CASE_EMPLOYER_ADDRESS,LCA_CASE_EMPLOYER_CITY,LCA_CASE_EMPLOYER_STATE,LCA_CASE_EMPLOYER_POSTAL_CODE,LCA_CASE_SOC_CODE,LCA_CASE_SOC_NAME,LCA_CASE_JOB_TITLE,LCA_CASE_WAGE_RATE_FROM,LCA_CASE_WAGE_RATE_TO,LCA_CASE_WAGE_RATE_UNIT,FULL_TIME_POS,TOTAL_WORKERS,LCA_CASE_WORKLOC1_CITY,LCA_CASE_WORKLOC1_STATE,PW_1,W_UNIT_1, PW_SOURCE_1,OTHER_WAGE_SOURCE_1,YR_SOURCE_PUB_1,LCA_CASE_WORKLOC2_CITY,LCA_CASE_WORKLOC2_STATE,PW_2,PW_UNIT_2,PW_SOURCE_2,OTHER_WAGE_SOURCE_2,YR_SOURCE_PUB_2,LCA_CASE_NAICS_CODE
-				I-203-14042-820159,CERTIFIED,11/02/2014,18/02/2014,E-3 Australian,1/04/2014,31/03/2016,"ACUMATICA INC 4030 LAKE WASHINGTON BLVD KIRKLAND WA 98033",11-2021,Marketing Managers,VICE PRESIDENT - PARTNER STRATEGY,300000,,Year,Y,1,KIRKLAND,WA,134597.00,Year,OES,OFLC ONLINE DATA CENTER,2013,,,,,,,,511210,</code>
-				</pre>
-				<p>You can search the data <a href="http://data.jobsintech.io/">here</a>, but what about the bigger picture?  As a lawyer, I'm always happy to find quicker ways to do repetitive tasks, especially when it might involve manually processing 510,000 plus rows of data.  Thankfully, an ability to code (JavaScript and D3js) and some competence in MS Excel (pivot tables) allows me to analyse the data without too much effort.</p>
-				<p>For example, we can group wages earned by foreign lawyers employed on a full-time basis and plot a frequency distribution (see Figure 1).</p>
-				<div id='all-lawyer-wages'></div>
-				<p><em>Figure 1.  Foreign lawyers seem to be doing alright for themselves.</em></p>
-				<p>Because Australians are entitled to a separate visa class, the E-3, and because I'm Australian, we can also look at salaries earned by Australians working on the E-3 on a full-time basis (see Figure 2).</p>
-				<div id='aus-wages'></div>
-				<p><em>Figure 2.  Ok, these guys are killing it - how do I get an E-3 visa?.</em></p>
-				<p>Finally, where are Australians working.  I suspect New York and California are up there, but what about the other states?  To sort this out, we can map the number of workers in each state to a colour scale, with darker colours for states with more workers and lighter colours for those with fewer (and gray for those anti-Australian states with none).  The result is a chloropleth map in Figure 3.</p>
-				<div id='map'></div>
-				<p><em>Figure 3.  What's going on in Washington and Texas?</em></p>
-				<p>To find out about Texas and Washington, we can isolate the results from those states.  Turns out its mainly engineers and software developers (Amazon, Microsoft together employ about 250 Australians on E-3s in Washington.)</p>
+	<h1>Foreign workers in the USA</h1>
+	<p><em>View the <a href="http://github.com/kelvin-tran/foreign-lawyers/">source of this content</a>.</em></p>
+	<p>The US agency responsible for managing working visas for foreigners in the US publishes annual data about the applications it receives.  The data reveals, for each application, the employer, the job title, location of work and the employee's salary, amongst other things.  This is what the data looks like (in csv format):</p>
+	<pre>
+	<code>LCA_CASE_NUMBER,STATUS,LCA_CASE_SUBMIT,DECISION_DATE,VISA_CLASS,LCA_CASE_EMPLOYMENT_START_DATE,LCA_CASE_EMPLOYMENT_END_DATE,LCA_CASE_EMPLOYER_NAME,LCA_CASE_EMPLOYER_ADDRESS,LCA_CASE_EMPLOYER_CITY,LCA_CASE_EMPLOYER_STATE,LCA_CASE_EMPLOYER_POSTAL_CODE,LCA_CASE_SOC_CODE,LCA_CASE_SOC_NAME,LCA_CASE_JOB_TITLE,LCA_CASE_WAGE_RATE_FROM,LCA_CASE_WAGE_RATE_TO,LCA_CASE_WAGE_RATE_UNIT,FULL_TIME_POS,TOTAL_WORKERS,LCA_CASE_WORKLOC1_CITY,LCA_CASE_WORKLOC1_STATE,PW_1,W_UNIT_1, PW_SOURCE_1,OTHER_WAGE_SOURCE_1,YR_SOURCE_PUB_1,LCA_CASE_WORKLOC2_CITY,LCA_CASE_WORKLOC2_STATE,PW_2,PW_UNIT_2,PW_SOURCE_2,OTHER_WAGE_SOURCE_2,YR_SOURCE_PUB_2,LCA_CASE_NAICS_CODE
+	I-203-14042-820159,CERTIFIED,11/02/2014,18/02/2014,E-3 Australian,1/04/2014,31/03/2016,"ACUMATICA INC 4030 LAKE WASHINGTON BLVD KIRKLAND WA 98033",11-2021,Marketing Managers,VICE PRESIDENT - PARTNER STRATEGY,300000,,Year,Y,1,KIRKLAND,WA,134597.00,Year,OES,OFLC ONLINE DATA CENTER,2013,,,,,,,,511210,</code>
+	</pre>
+	<p>You can search the data <a href="http://data.jobsintech.io/">here</a>, but what about the bigger picture?  As a lawyer, I'm always happy to find quicker ways to do repetitive tasks, especially when it might involve manually processing 510,000 plus rows of data.  Thankfully, an ability to code (JavaScript and D3js) and some competence in MS Excel (pivot tables) allows me to analyse the data without too much effort.</p>
+	<p>For example, we can group wages earned by foreign lawyers employed on a full-time basis and plot a frequency distribution (see Figure 1).</p>
+	<div id='all-lawyer-wages'></div>
+	<p><em>Figure 1.  Foreign lawyers seem to be doing alright for themselves.</em></p>
+	<p>Because Australians are entitled to a separate visa class, the E-3, and because I'm Australian, we can also look at salaries earned by Australians working on the E-3 on a full-time basis (see Figure 2).</p>
+	<div id='aus-wages'></div>
+	<p><em>Figure 2.  Ok, these guys are killing it - how do I get an E-3 visa?.</em></p>
+	<p>Finally, where are Australians working.  I suspect New York and California are up there, but what about the other states?  To sort this out, we can map the number of workers in each state to a colour scale, with darker colours for states with more workers and lighter colours for those with fewer (and gray for those anti-Australian states with none).  The result is a chloropleth map in Figure 3.</p>
+	<div id='map'></div>
+	<p><em>Figure 3.  What's going on in Washington and Texas?</em></p>
+	<p>To find out about Texas and Washington, we can isolate the results from those states.  Turns out its mainly engineers and software developers (Amazon, Microsoft together employ about 250 Australians on E-3s in Washington.)</p>
       </section>
       <footer>
         <p>This page is maintained by <a href="http://github.com/kelvin-tran">Kelvin Tran</a></p>
