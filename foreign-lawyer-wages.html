@@ -286,7 +286,6 @@
 		<script>
 		var tx_margin = {top: 20, right: 10, bottom: 80, left: 30},
 				tx_width = 420 - tx_margin.left - tx_margin.right,
-				tx_height = 350 - tx_margin.top - tx_margin.bottom,
 				tx_barHeight = 20;
 		var tx_x = d3.scale.linear()
 				.range([0, tx_width]);
@@ -297,11 +296,12 @@
 				.scale(tx_x)
 				.orient("bottom");
 		d3.csv("foreign-lawyers/TX.csv", type, function(error, data) {
+			var tx_height = tx_barHeight * data.length - tx_margin.top - tx_margin.bottom;
 		  tx_x.domain([0, d3.max(data, function(d) { return d.value; })]);
-		  tx_chart.attr("height", tx_barHeight * data.length);
+		  tx_chart.attr("height", tx_height);
 			tx_chart.append("g")
 					.attr("class", "x axis")
-					.attr("transform", "translate(0," + height + ")")
+					.attr("transform", "translate(0," + tx_height + ")")
 				.call(xAxis)
 		  var tx_bar = tx_chart.selectAll("rect")
 		      .data(data)
