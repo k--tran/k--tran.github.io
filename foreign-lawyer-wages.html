@@ -310,8 +310,10 @@
 					.text(function(d) { return d.profession; });
 		});
 		function type(d) {
-		  d.value = +d.value; // coerce to number
-		  return d;
+			if (d.value > 10) {
+			d.value = +d.value; // coerce to number
+			return d;
+			}
 		}
 		</script>
 	</body>
