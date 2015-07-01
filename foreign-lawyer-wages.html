@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Kelvin Tran - GitHub</title>
+    <title>Foreign workers in the USA</title>
     
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -63,9 +63,19 @@
         </script>
       </header>
       <section>
-				<div id='all-lawyer-wages'></div>
+      	<h1>Foreign workers in the USA</h1>
+      	<p><em>View the <a href="http://github.com/kelvin-tran/foreign-lawyers/">source of this content</a>.</em></p>
+      	<p>The US agency responsible for managing working visas for foreigners in the US publishes annual data about the applications it receives.  The data reveals, for each application, the employer, the job title, location of work and the employee's salary, amongst other things.  You can search the data <a href="http://data.jobsintech.io/">here</a>, but what about the bigger picture?</p>
+      	<p>As a lawyer, I am, unfortunately, able to handle repetitive tasks, but manually processing 510,000 plus rows of data is beyond my abilities.  Thankfully, an ability to code (javascript and D3js) and some competence in Excel (pivot tables) allows me to analyse the data without too much effort.</p>
+      	<p>For example, we can group wages earned by lawyers and plot a frequency distribution (see Figure 1).</p>
+      	<div id='all-lawyer-wages'></div>
+      	<em>Figure 1.  Foreign lawyers seem to be doing alright for themselves.</em>
+      	<p>Because Australians are entitled to a separate visa class, the E-3, and because I'm Australian, we can also look at salaries earned by Australians in the US (see Figure 2).</p>
 				<div id='aus-wages'></div>
+				<em>Figure 2.  Ok, these guys are killing it - how do I get an E-3 visa?.</em>
+				<p>Finally, where are Australians working.  I suspect New York and California are up there, but what about the other states?  (See Figure 3.)</p>
 				<div id='map'></div>
+				<em>Figure 3.  What's going on in Washington and Texas?</em>
       </section>
       <footer>
         <p>This page is maintained by <a href="http://github.com/kelvin-tran">Kelvin Tran</a></p>
