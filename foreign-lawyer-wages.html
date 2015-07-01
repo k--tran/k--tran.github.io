@@ -293,7 +293,7 @@
 				.attr("width", tx_width);
 		var tx_xAxis = d3.svg.axis()
 				.scale(tx_x)
-				.ticks(10)
+				.ticks(50)
 				.orient("bottom");
 		d3.csv("foreign-lawyers/TX.csv", type, function(error, data) {
 			var tx_height = tx_barHeight * data.length + tx_margin.bottom;
