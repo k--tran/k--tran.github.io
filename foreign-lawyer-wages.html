@@ -303,7 +303,7 @@
 					.attr("class", "x axis")
 					.attr("transform", "translate(0," + height + ")")
 				.call(xAxis)
-		  var tx_bar = tx_chart.selectAll("g")
+		  var tx_bar = tx_chart.selectAll("rect")
 		      .data(data)
 		    .enter().append("g")
 		      .attr("transform", function(d, i) { return "translate(0," + i * tx_barHeight + ")"; });
