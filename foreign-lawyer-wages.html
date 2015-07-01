@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Foreign workers in the USA</title>
-    
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -301,7 +300,7 @@
 		  tx_chart.attr("height", tx_height);
 			tx_chart.append("g")
 					.attr("class", "x axis")
-					.attr("transform", "translate(0," + tx_height - tx_margin.bottom + ")")
+					.attr("transform", "translate(0," + (tx_height - tx_margin.bottom) + ")")
 				.call(xAxis)
 		  var tx_bar = tx_chart.selectAll("rect")
 		      .data(data)
