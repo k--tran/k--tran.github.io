@@ -286,13 +286,14 @@
 		var tx_margin = {right: 10, bottom: 30, left: 30},
 				tx_width = 420 - tx_margin.left - tx_margin.right,
 				tx_barHeight = 20;
-		var tx_x = d3.scale.ordinal()
+		var tx_x = d3.scale.linear()
 				.range([0, tx_width]);
 		var tx_chart = d3.select("#texas-chart").append("svg")
 				.attr("class", "chart")
 				.attr("width", tx_width);
 		var tx_xAxis = d3.svg.axis()
 				.scale(tx_x)
+				.ticks(10)
 				.orient("bottom");
 		d3.csv("foreign-lawyers/TX.csv", type, function(error, data) {
 			var tx_height = tx_barHeight * data.length + tx_margin.bottom;
