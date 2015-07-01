@@ -287,14 +287,14 @@
 			});
 		</script>
 		<script>
-		var tx_margin = {right: 10, bottom: 30, left: 30},
-				tx_width = 420 - tx_margin.left - tx_margin.right,
+		var tx_margin = {right: 10, bottom: 30, left: 100},
+				tx_width = 250 - tx_margin.left - tx_margin.right,
 				tx_barHeight = 20;
 		var tx_x = d3.scale.linear()
-				.range([0, tx_width]);
+				.range([0, tx_width + tx_margin.left + tx_margin.right]);
 		var tx_chart = d3.select("#texas-chart").append("svg")
 				.attr("class", "chart")
-				.attr("width", tx_width);
+				.attr("width", tx_width + );
 		var tx_xAxis = d3.svg.axis()
 				.scale(tx_x)
 				.orient("bottom");
