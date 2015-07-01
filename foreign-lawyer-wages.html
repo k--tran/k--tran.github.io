@@ -75,11 +75,11 @@
     <script src="javascripts/scale.fix.js"></script>
 		<script>
 			// lawyer wages graph
-			var margin = {top: 20, right: 20, bottom: 80, left: 40},
-			    width = 630 - margin.left - margin.right,
+			var margin = {top: 20, right: 10, bottom: 80, left: 40},
+			    width = 620 - margin.left - margin.right,
 			    height = 350 - margin.top - margin.bottom;
 			var x = d3.scale.ordinal()
-			    .rangeRoundBands([0, width], .1);
+			    .rangeRoundBands([0, width], .2);
 			var y = d3.scale.linear()
 			    .range([height, 0]);
 			var xAxis = d3.svg.axis()
@@ -134,11 +134,11 @@
 		</script>
 		<script>
 			// australian wages
-			var aus_margin = {top: 20, right: 20, bottom: 80, left: 40},
-			    aus_width = 630 - aus_margin.left - aus_margin.right,
+			var aus_margin = {top: 20, right: 10, bottom: 80, left: 40},
+			    aus_width = 620 - aus_margin.left - aus_margin.right,
 			    aus_height = 350 - aus_margin.top - aus_margin.bottom;
 			var aus_x = d3.scale.ordinal()
-			    .rangeRoundBands([0, aus_width], .1);
+			    .rangeRoundBands([0, aus_width], .2);
 			var aus_y = d3.scale.linear()
 			    .range([aus_height, 0]);
 			var aus_xAxis = d3.svg.axis()
