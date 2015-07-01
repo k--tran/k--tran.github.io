@@ -286,7 +286,7 @@
 		var tx_margin = {right: 10, bottom: 30, left: 30},
 				tx_width = 420 - tx_margin.left - tx_margin.right,
 				tx_barHeight = 20;
-		var tx_x = d3.scale.linear()
+		var tx_x = d3.scale.ordinal()
 				.range([0, tx_width]);
 		var tx_chart = d3.select("#texas-chart").append("svg")
 				.attr("class", "chart")
