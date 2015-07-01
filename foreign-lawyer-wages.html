@@ -78,7 +78,10 @@
 	<p>Finally, where are Australians working.  I suspect New York and California are up there, but what about the other states?  To sort this out, we can map the number of workers in each state to a colour scale, with darker colours for states with more workers and lighter colours for those with fewer (and gray for those anti-Australian states with none).  The result is a chloropleth map in Figure 3.</p>
 	<div id='map'></div>
 	<p><em>Figure 3.  What's going on in Washington and Texas?</em></p>
-	<p>To find out about Texas and Washington, we can isolate the results from those states.  Turns out its mainly engineers and software developers (Amazon, Microsoft together employ about 250 Australians on E-3s in Washington.)</p>
+	<p>To find out about Texas (Figure 4) and Washington (Figure 5), we isolated the applications from employers in those states.</p>
+      	<div id="texas-chart"></div>
+      	<div id="wash-chart"></div>
+      	<p><em>Turns out its mainly engineers and software developers (Amazon, Microsoft together employ about 250 Australians on E-3s in Washington.)</em></p>
       </section>
       <footer>
         <p>This page is maintained by <a href="http://github.com/kelvin-tran">Kelvin Tran</a></p>
@@ -270,6 +273,34 @@
 		          });
 				});
 			});
+		</script>
+		<script>
+		var width = 420,
+		    barHeight = 20;
+		var x = d3.scale.linear()
+		    .range([0, width]);
+		var chart = d3.select("#")
+		    .attr("width", width);
+		d3.tsv("foreign-lawyers/TX.tsv", type, function(error, data) {
+		  x.domain([0, d3.max(data, function(d) { return d.value; })]);
+		  chart.attr("height", barHeight * data.length);
+		  var bar = chart.selectAll("g")
+		      .data(data)
+		    .enter().append("g")
+		      .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
+		  bar.append("rect")
+		      .attr("width", function(d) { return x(d.value); })
+		      .attr("height", barHeight - 1);
+		  bar.append("text")
+		      .attr("x", function(d) { return x(d.value) - 3; })
+		      .attr("y", barHeight / 2)
+		      .attr("dy", ".35em")
+		      .text(function(d) { return d.value; });
+		});
+		function type(d) {
+		  d.value = +d.value; // coerce to number
+		  return d;
+		}
 		</script>
 	</body>
 </html>
