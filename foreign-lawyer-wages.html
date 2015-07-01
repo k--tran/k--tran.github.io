@@ -300,7 +300,7 @@
 		      .data(data)
 		    .enter().append("g")
 		      .attr("transform", function(d, i) { return "translate(0," + i * tx_barHeight + ")"; });
-		  if (d.value > 5) {
+		  if (function(d) {  return d.value; } > 4) {
 				tx_bar.append("rect")
 						.attr("width", function(d) { return tx_x(d.value); })
 						.attr("height", tx_barHeight - 1);
