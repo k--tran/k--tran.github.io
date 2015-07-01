@@ -295,6 +295,8 @@
 		var tx_chart = d3.select("#texas-chart").append("svg")
 				.attr("class", "chart")
 				.attr("width", tx_width + tx_margin.left + tx_margin.right);
+			.append("g")
+				.attr("transform", "translate(" + tx_margin.left + ",0)");
 		var tx_xAxis = d3.svg.axis()
 				.scale(tx_x)
 				.orient("bottom");
